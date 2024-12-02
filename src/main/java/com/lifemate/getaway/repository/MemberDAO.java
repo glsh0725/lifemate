@@ -1,4 +1,4 @@
-package com.lifemate.getaway.getaway.repository;
+package com.lifemate.getaway.repository;
 
 public interface MemberDAO {
 }

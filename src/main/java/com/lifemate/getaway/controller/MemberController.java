@@ -1,4 +1,4 @@
-package com.lifemate.getaway.getaway.controller;
+package com.lifemate.getaway.controller;
 
 public interface MemberController {
 }

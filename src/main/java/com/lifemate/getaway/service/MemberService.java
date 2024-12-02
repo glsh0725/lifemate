@@ -1,4 +1,4 @@
-package com.lifemate.getaway.getaway.service;
+package com.lifemate.getaway.service;
 
 public interface MemberService {
 }
