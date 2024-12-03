@@ -9,6 +9,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface MemberController {
 
+    // 회원 리스트
+    public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
     // 회원 추가
     public ModelAndView addMember(@ModelAttribute("info") MemberVO memberVO,
                                   HttpServletRequest request, HttpServletResponse response) throws Exception;
