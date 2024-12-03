@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service("memberService")
 @Transactional(propagation = Propagation.REQUIRED)
 public class MemberServiceImpl implements MemberService {
@@ -15,7 +17,14 @@ public class MemberServiceImpl implements MemberService {
     private MemberDAO memberDAO;
 
     @Override
-    public int addMember(MemberVO member) throws Exception{
+    public List listMembers() throws Exception {
+        List membersList = null;
+        membersList = memberDAO.selectAllMemberList();
+        return membersList;
+    }
+
+    @Override
+    public int addMember(MemberVO member) throws Exception {
         return memberDAO.insertMember(member);
     }
 
