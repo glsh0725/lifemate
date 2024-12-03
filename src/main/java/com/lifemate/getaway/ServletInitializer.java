@@ -1,4 +1,4 @@
-package com.lifemate.getaway.getaway;
+package com.lifemate.getaway;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
