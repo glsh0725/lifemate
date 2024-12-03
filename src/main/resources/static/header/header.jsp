@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= request.getAttribute("pageTitle") != null ? request.getAttribute("pageTitle") : "Default Title" %></title>
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="src/resource/static//header/css/style.css">
+    <script src="/src/resource/static/header/js/header.js"></script>
 </head>
 <body>
     <header>
