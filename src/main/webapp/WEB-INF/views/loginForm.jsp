@@ -7,7 +7,6 @@
 <%
    request.setCharacterEncoding("UTF-8");
 %>
-<jsp:include page="header.jsp" />
 <html>
 <head>
     <title>로그인창</title>
