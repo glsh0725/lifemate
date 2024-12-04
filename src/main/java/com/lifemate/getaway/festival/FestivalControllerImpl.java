@@ -1,4 +1,11 @@
 package com.lifemate.getaway.festival;
 
-public class FestivalControllerImpl {
+import org.springframework.web.bind.annotation.GetMapping;
+
+public class FestivalControllerImpl implements FestivalController {
+
+    @GetMapping("/festival")
+    public String festivalPage() {
+        return "festival/festival";
+    }
 }

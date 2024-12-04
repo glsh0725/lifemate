@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public interface FestivalController {
 
-    @GetMapping("/festival")
+/*    @GetMapping("/festival")
     public String festivalPage() {
         return "festival/festival";
-    }
+    }*/
 }
