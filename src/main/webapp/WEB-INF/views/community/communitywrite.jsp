@@ -14,10 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글쓰기</title>
     <link rel="stylesheet" href="${contextPath}/css/community/communitywrite.css">
+    <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 </head>
 <body>
-    <main>
-    <%@ include file="/WEB-INF/views/includes/header.jsp" %>
+    <main class="write-form-main">
     <br>
     <div class="write-form-container">
         <form action="${contextPath}/community/save" method="post" enctype="multipart/form-data">
