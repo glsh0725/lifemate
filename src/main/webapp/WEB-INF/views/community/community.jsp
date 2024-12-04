@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>커뮤니티</title>
-    <link rel="stylesheet" href="${contextPath}/static/css/community/community.css">
+    <link rel="stylesheet" href="${contextPath}/css/community/community.css">
     <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 </head>
 <body>
@@ -57,7 +57,7 @@
         </select>
         <input type="text" id="search" placeholder="검색어를 입력하세요">
         <button onclick="searchPosts()">검색</button>
-        <button onclick="location.href='communitywrite.jsp'">글쓰기</button>
+        <button onclick="location.href='communitywrite'">글쓰기</button>
     </div>
     </main>
 </body>
