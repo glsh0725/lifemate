@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="form-group-join">
-                    <button type="submit">회원가입</button>
+                    <button type="submit">회원가입.</button>
                 </div>
             </form>
         </div>
