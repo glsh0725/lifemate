@@ -1,13 +1,24 @@
 package fs.four.dropout.user.service;
 
+import fs.four.dropout.user.dao.JoinDAO;
+import fs.four.dropout.user.vo.UserVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Controller
-public class JoinServiceImpl {
+@Service("joinService")
+@Transactional(propagation = Propagation.REQUIRED)
+public class JoinServiceImpl implements JoinService {
 
-    @GetMapping("/join")
-    public String joinPage() {
-        return "user/join";
+    @Autowired
+    private JoinDAO joinDAO;
+
+    @Override
+    public int addUser(UserVO user) throws Exception{
+        return joinDAO.insertMember(user);
     }
+
 }
