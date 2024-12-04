@@ -1,4 +1,4 @@
 package com.lifemate.getaway.user;
 
-public class JoinDAO {
+public interface JoinDAO {
 }

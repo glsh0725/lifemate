@@ -1,4 +1,4 @@
 package com.lifemate.getaway.user;
 
-public interface CommonControllerImpl {
+public class CommonControllerImpl {
 }

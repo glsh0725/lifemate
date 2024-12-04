@@ -1,4 +1,4 @@
 package com.lifemate.getaway.mate;
 
-public class MateService {
+public interface MateService {
 }

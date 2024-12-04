@@ -1,4 +1,4 @@
 package com.lifemate.getaway.user;
 
-public class JoinService {
+public interface JoinService {
 }

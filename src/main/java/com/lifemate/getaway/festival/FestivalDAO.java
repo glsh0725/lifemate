@@ -1,4 +1,4 @@
 package com.lifemate.getaway.festival;
 
-public class FestivalDAO {
+public interface FestivalDAO {
 }

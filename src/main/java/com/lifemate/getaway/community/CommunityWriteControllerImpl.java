@@ -1,4 +1,11 @@
 package com.lifemate.getaway.community;
 
-public interface CommunityWriteControllerImpl {
+import org.springframework.web.bind.annotation.GetMapping;
+
+public class CommunityWriteControllerImpl implements CommunityWriteController {
+
+    @GetMapping("/communitywrite")
+    public String communitywritePage() {
+        return "community/communitywrite";
+    }
 }

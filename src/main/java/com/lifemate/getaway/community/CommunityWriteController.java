@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class CommunityWriteController {
+public interface CommunityWriteController {
 
-    @GetMapping("/communitywrite")
+    /*@GetMapping("/communitywrite")
     public String communitywritePage() {
         return "community/communitywrite";
-    }
+    }*/
 }

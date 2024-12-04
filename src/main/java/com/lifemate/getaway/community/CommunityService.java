@@ -1,4 +1,4 @@
 package com.lifemate.getaway.community;
 
-public class CommunityService {
+public interface CommunityService {
 }

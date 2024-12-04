@@ -1,4 +1,4 @@
 package com.lifemate.getaway.user;
 
-public interface LoginServiceImpl {
+public class LoginServiceImpl {
 }

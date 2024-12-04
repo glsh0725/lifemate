@@ -1,4 +1,4 @@
 package com.lifemate.getaway.main;
 
-public interface MainServiceImpl {
+public class MainServiceImpl {
 }

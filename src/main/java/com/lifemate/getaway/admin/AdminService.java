@@ -1,4 +1,4 @@
 package com.lifemate.getaway.admin;
 
-public class AdminService {
+public interface AdminService {
 }

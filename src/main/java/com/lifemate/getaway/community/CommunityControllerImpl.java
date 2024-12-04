@@ -1,4 +1,11 @@
 package com.lifemate.getaway.community;
 
-public interface CommunityControllerImpl {
+import org.springframework.web.bind.annotation.GetMapping;
+
+public class CommunityControllerImpl implements CommunityController {
+
+    @GetMapping("/community")
+    public String communityPage() {
+        return "community/community";
+    }
 }

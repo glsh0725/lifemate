@@ -1,4 +1,4 @@
 package com.lifemate.getaway.mate;
 
-public interface MateControllerImpl {
+public class MateControllerImpl {
 }
