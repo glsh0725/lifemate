@@ -41,14 +41,16 @@ public class CommonControllerImpl implements CommonController {
     }
 
     @Override
-    @PostMapping("/user/addUser.do")
+    @PostMapping("/join")
     public ModelAndView addUser(@ModelAttribute("user") UserVO user,
                                 HttpServletRequest request, HttpServletResponse response) throws Exception{
 
         request.setCharacterEncoding("utf-8");
         int result = 0;
-                                                    // 관리자 회원 관리 페이지 리다이렉트
-        ModelAndView mav = new ModelAndView("redirect:/admin/listMembers.do");
+
+        result = joinService.addUser(user);
+                                                    // 메인 페이지 리다이렉트
+        ModelAndView mav = new ModelAndView("redirect:/main");
         return mav;
 
     }

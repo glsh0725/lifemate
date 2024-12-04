@@ -1,5 +1,6 @@
 package fs.four.dropout.user.service;
 
+import fs.four.dropout.admin.dao.AdminDAO;
 import fs.four.dropout.user.dao.JoinDAO;
 import fs.four.dropout.user.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,12 @@ public class JoinServiceImpl implements JoinService {
     @Autowired
     private JoinDAO joinDAO;
 
+    @Autowired
+    private AdminDAO adminDAO;
+
     @Override
     public int addUser(UserVO user) throws Exception{
-        return joinDAO.insertMember(user);
+        return joinDAO.insertUser(user);
     }
 
 }

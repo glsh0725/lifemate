@@ -6,6 +6,6 @@ import org.springframework.dao.DataAccessException;
 
 @Mapper
 public interface JoinDAO {
-
-    public int insertMember(UserVO userVO) throws DataAccessException;
+    
+    public int insertUser(UserVO userVO) throws DataAccessException;
 }
