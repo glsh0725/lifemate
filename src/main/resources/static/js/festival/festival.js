@@ -2,6 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const calendar = document.getElementById("calendar");
     const yearSelect = document.getElementById("year-select");
     const monthSelect = document.getElementById("month-select");
+    const prevMonthButton = document.createElement("button");
+    const nextMonthButton = document.createElement("button");
+
+    prevMonthButton.textContent = "이전 달";
+    nextMonthButton.textContent = "다음 달";
+
+    const calendarControls = document.querySelector(".calendar-controls");
+    calendarControls.appendChild(prevMonthButton);
+    calendarControls.appendChild(nextMonthButton);
 
     function populateYearAndMonth() {
         const currentYear = new Date().getFullYear();
@@ -41,20 +50,31 @@ document.addEventListener("DOMContentLoaded", function () {
             <tbody>`;
 
         let day = 1;
+        let rowCreated = false;
+
         for (let i = 0; i < 6; i++) {
-            html += "<tr>";
+            let rowHtml = "<tr>";
+            let cellsCreated = false;
             for (let j = 0; j < 7; j++) {
                 if (i === 0 && j < firstDay || day > daysInMonth) {
-                    html += "<td></td>";
+                    rowHtml += "<td></td>";
                 } else {
-                    html += `<td class="calendar-day" data-date="${year}-${month + 1}-${day}">${day}</td>`;
+                    rowHtml += `<td class="calendar-day" data-date="${year}-${month + 1}-${day}">${day}</td>`;
                     day++;
+                    cellsCreated = true;
                 }
             }
-            html += "</tr>";
+            rowHtml += "</tr>";
+            if (cellsCreated) {
+                html += rowHtml;
+                rowCreated = true;
+            }
         }
         html += "</tbody></table>";
-        calendar.innerHTML = html;
+
+        if (rowCreated) {
+            calendar.innerHTML = html;
+        }
 
         const days = document.querySelectorAll(".calendar-day");
         days.forEach(day => {
@@ -66,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function fetchFestivalsByDate(date) {
-        const contextPath = document.querySelector("c\\:set[var='contextPath']").getAttribute("value");
         window.location.href = `${contextPath}/festival?date=${date}`;
     }
 
@@ -76,6 +95,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     monthSelect.addEventListener("change", function () {
         generateCalendar(Number(yearSelect.value), Number(monthSelect.value));
+    });
+
+    prevMonthButton.addEventListener("click", function () {
+        let currentMonth = Number(monthSelect.value);
+        let currentYear = Number(yearSelect.value);
+
+        if (currentMonth === 0) {
+            currentMonth = 11;
+            currentYear--;
+        } else {
+            currentMonth--;
+        }
+
+        monthSelect.value = currentMonth;
+        yearSelect.value = currentYear;
+        generateCalendar(currentYear, currentMonth);
+    });
+
+    nextMonthButton.addEventListener("click", function () {
+        let currentMonth = Number(monthSelect.value);
+        let currentYear = Number(yearSelect.value);
+
+        if (currentMonth === 11) {
+            currentMonth = 0;
+            currentYear++;
+        } else {
+            currentMonth++;
+        }
+
+        monthSelect.value = currentMonth;
+        yearSelect.value = currentYear;
+        generateCalendar(currentYear, currentMonth);
     });
 
     populateYearAndMonth();

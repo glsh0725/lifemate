@@ -11,8 +11,12 @@
     <title>축제정보</title>
     <link rel="stylesheet" href="${contextPath}/css/festival/festival.css">
     <%@ include file="/WEB-INF/views/includes/header.jsp" %>
+    <script>
+        const contextPath = "${contextPath}";
+    </script>
 </head>
 <body>
+    <h1>월별 축제달력</h1>
     <section class="calendar-section">
         <div class="calendar-controls">
             <select id="year-select"></select>
@@ -20,8 +24,12 @@
         </div>
         <div id="calendar"></div>
     </section>
+    <form method="get" action="${contextPath}/festival">
+        <input type="text" name="address" placeholder="주소로 검색" value="${searchAddress}" />
+        <button type="submit">검색</button>
+    </form>
+    <h1>축제 리스트</h1>
     <main>
-        <h1>축제 리스트</h1>
         <section class="festival-section">
             <ul class="festival-list">
                 <c:forEach var="festival" items="${festivals}">
