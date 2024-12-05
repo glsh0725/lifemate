@@ -2,184 +2,308 @@ package fs.four.dropout.mate.vo;
 
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Component("mateVO")
 public class MateVO {
 
-    private Number mt_number;
-    private String usr_id;
-    private String mt_info;
-    private String mt_location;
-    private String mt_category;
-    private String mt_facility_name;
-    private String mt_contact;
-    private String mt_new_address;
-    private String mt_old_address;
-    private String mt_url;
-    private char mt_entry_fee;
-    private char mt_fee_parking;
-    private char mt_paid_parking;
-    private String mt_entry_age;
-    private char mt_family_toilet;
-    private char mt_stroller_rental;
-    private char mt_nursing_room;
-    private char mt_kid_zone;
-    private Date mt_last_updated;
+    private char familyToilet;      // 가족 화장실 보유 여부
+    private String bulidingNm;      // 건물 번호
+    private Number longitude;       // 경도
+    private String roadName;        // 도로명 이름
+    private String roadNameAddress; // 도로명 주소
+    private String riName;          // 리 명칭
+    private char freeParking;       // 무료주차 가능여부
+    private String address;         // 번지
+    private String legaldong;       // 법정읍면동명칭
+    private String branchName;      // 분점명
+    private String blogUrl;         // 블로그 주소
+    private char nursingRoom;       // 수유실 보유여부
+    private String cityDistrict;    // 시군구 명칭
+    private String city;            // 시도 명칭
+    private String facilityName;    // 시설명
+    private String postalCode;      // 우편번호
+    private String businessHours;   // 운영 시간
+    private Number latitude;        // 위도
+    private char paidParking;       // 유료주차 가능여부
+    private String strollerRental;  // 유모차 대여 여부
+    private String instargramUrl;   // 인스타 주소
+    private String entryAge;        // 입장 가능 나이
+    private char entranceFee;       // 입장료 유무 여부
+    private String phoneNumber;     // 전화번호
+    private String streetAddress;   // 지번주소
+    private char lastReviewed;      // 최종작성일
+    private String category1;       // 카테고리1
+    private String category2;       // 카테고리2
+    private String category3;       // 카테고리3
+    private char kidZone;           // 키즈존 여부
+    private String facebookUrl;     // 페이스북 주소
+    private String url;             // 홈페이지
+    private String holiday;         // 휴무일
 
     public MateVO() {
 
     }
 
-    public Number getMt_number() {
-        return mt_number;
+    public char getFamilyToilet() {
+        return familyToilet;
     }
 
-    public void setMt_number(Number mt_number) {
-        this.mt_number = mt_number;
+    public void setFamilyToilet(char familyToilet) {
+        this.familyToilet = familyToilet;
     }
 
-    public String getUsr_id() {
-        return usr_id;
+    public String getBulidingNm() {
+        return bulidingNm;
     }
 
-    public void setUsr_id(String usr_id) {
-        this.usr_id = usr_id;
+    public void setBulidingNm(String bulidingNm) {
+        this.bulidingNm = bulidingNm;
     }
 
-    public String getMt_info() {
-        return mt_info;
+    public Number getLongitude() {
+        return longitude;
     }
 
-    public void setMt_info(String mt_info) {
-        this.mt_info = mt_info;
+    public void setLongitude(Number longitude) {
+        this.longitude = longitude;
     }
 
-    public String getMt_location() {
-        return mt_location;
+    public String getRoadName() {
+        return roadName;
     }
 
-    public void setMt_location(String mt_location) {
-        this.mt_location = mt_location;
+    public void setRoadName(String roadName) {
+        this.roadName = roadName;
     }
 
-    public String getMt_category() {
-        return mt_category;
+    public String getRoadNameAddress() {
+        return roadNameAddress;
     }
 
-    public void setMt_category(String mt_category) {
-        this.mt_category = mt_category;
+    public void setRoadNameAddress(String roadNameAddress) {
+        this.roadNameAddress = roadNameAddress;
     }
 
-    public String getMt_facility_name() {
-        return mt_facility_name;
+    public String getRiName() {
+        return riName;
     }
 
-    public void setMt_facility_name(String mt_facility_name) {
-        this.mt_facility_name = mt_facility_name;
+    public void setRiName(String riName) {
+        this.riName = riName;
     }
 
-    public String getMt_contact() {
-        return mt_contact;
+    public char getFreeParking() {
+        return freeParking;
     }
 
-    public void setMt_contact(String mt_contact) {
-        this.mt_contact = mt_contact;
+    public void setFreeParking(char freeParking) {
+        this.freeParking = freeParking;
     }
 
-    public String getMt_new_address() {
-        return mt_new_address;
+    public String getAddress() {
+        return address;
     }
 
-    public void setMt_new_address(String mt_new_address) {
-        this.mt_new_address = mt_new_address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getMt_old_address() {
-        return mt_old_address;
+    public String getLegaldong() {
+        return legaldong;
     }
 
-    public void setMt_old_address(String mt_old_address) {
-        this.mt_old_address = mt_old_address;
+    public void setLegaldong(String legaldong) {
+        this.legaldong = legaldong;
     }
 
-    public String getMt_url() {
-        return mt_url;
+    public String getBranchName() {
+        return branchName;
     }
 
-    public void setMt_url(String mt_url) {
-        this.mt_url = mt_url;
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
     }
 
-    public char getMt_entry_fee() {
-        return mt_entry_fee;
+    public String getBlogUrl() {
+        return blogUrl;
     }
 
-    public void setMt_entry_fee(char mt_entry_fee) {
-        this.mt_entry_fee = mt_entry_fee;
+    public void setBlogUrl(String blogUrl) {
+        this.blogUrl = blogUrl;
     }
 
-    public char getMt_fee_parking() {
-        return mt_fee_parking;
+    public char getNursingRoom() {
+        return nursingRoom;
     }
 
-    public void setMt_fee_parking(char mt_fee_parking) {
-        this.mt_fee_parking = mt_fee_parking;
+    public void setNursingRoom(char nursingRoom) {
+        this.nursingRoom = nursingRoom;
     }
 
-    public char getMt_paid_parking() {
-        return mt_paid_parking;
+    public String getCityDistrict() {
+        return cityDistrict;
     }
 
-    public void setMt_paid_parking(char mt_paid_parking) {
-        this.mt_paid_parking = mt_paid_parking;
+    public void setCityDistrict(String cityDistrict) {
+        this.cityDistrict = cityDistrict;
     }
 
-    public String getMt_entry_age() {
-        return mt_entry_age;
+    public String getCity() {
+        return city;
     }
 
-    public void setMt_entry_age(String mt_entry_age) {
-        this.mt_entry_age = mt_entry_age;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public char getMt_family_toilet() {
-        return mt_family_toilet;
+    public String getFacilityName() {
+        return facilityName;
     }
 
-    public void setMt_family_toilet(char mt_family_toilet) {
-        this.mt_family_toilet = mt_family_toilet;
+    public void setFacilityName(String facilityName) {
+        this.facilityName = facilityName;
     }
 
-    public char getMt_stroller_rental() {
-        return mt_stroller_rental;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setMt_stroller_rental(char mt_stroller_rental) {
-        this.mt_stroller_rental = mt_stroller_rental;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
-    public char getMt_nursing_room() {
-        return mt_nursing_room;
+    public String getBusinessHours() {
+        return businessHours;
     }
 
-    public void setMt_nursing_room(char mt_nursing_room) {
-        this.mt_nursing_room = mt_nursing_room;
+    public void setBusinessHours(String businessHours) {
+        this.businessHours = businessHours;
     }
 
-    public char getMt_kid_zone() {
-        return mt_kid_zone;
+    public Number getLatitude() {
+        return latitude;
     }
 
-    public void setMt_kid_zone(char mt_kid_zone) {
-        this.mt_kid_zone = mt_kid_zone;
+    public void setLatitude(Number latitude) {
+        this.latitude = latitude;
     }
 
-    public Date getMt_last_updated() {
-        return mt_last_updated;
+    public char getPaidParking() {
+        return paidParking;
     }
 
-    public void setMt_last_updated(Date mt_last_updated) {
-        this.mt_last_updated = mt_last_updated;
+    public void setPaidParking(char paidParking) {
+        this.paidParking = paidParking;
+    }
+
+    public String getStrollerRental() {
+        return strollerRental;
+    }
+
+    public void setStrollerRental(String strollerRental) {
+        this.strollerRental = strollerRental;
+    }
+
+    public String getInstargramUrl() {
+        return instargramUrl;
+    }
+
+    public void setInstargramUrl(String instargramUrl) {
+        this.instargramUrl = instargramUrl;
+    }
+
+    public String getEntryAge() {
+        return entryAge;
+    }
+
+    public void setEntryAge(String entryAge) {
+        this.entryAge = entryAge;
+    }
+
+    public char getEntranceFee() {
+        return entranceFee;
+    }
+
+    public void setEntranceFee(char entranceFee) {
+        this.entranceFee = entranceFee;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
+    public char getLastReviewed() {
+        return lastReviewed;
+    }
+
+    public void setLastReviewed(char lastReviewed) {
+        this.lastReviewed = lastReviewed;
+    }
+
+    public String getCategory1() {
+        return category1;
+    }
+
+    public void setCategory1(String category1) {
+        this.category1 = category1;
+    }
+
+    public String getCategory2() {
+        return category2;
+    }
+
+    public void setCategory2(String category2) {
+        this.category2 = category2;
+    }
+
+    public String getCategory3() {
+        return category3;
+    }
+
+    public void setCategory3(String category3) {
+        this.category3 = category3;
+    }
+
+    public char getKidZone() {
+        return kidZone;
+    }
+
+    public void setKidZone(char kidZone) {
+        this.kidZone = kidZone;
+    }
+
+    public String getFacebookUrl() {
+        return facebookUrl;
+    }
+
+    public void setFacebookUrl(String facebookUrl) {
+        this.facebookUrl = facebookUrl;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getHoliday() {
+        return holiday;
+    }
+
+    public void setHoliday(String holiday) {
+        this.holiday = holiday;
     }
 }
