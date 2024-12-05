@@ -16,4 +16,8 @@ public class MateControllerImpl implements MateController {
         return "mate/mate";
     }
 
+    @GetMapping("/mateform/list")
+    public String matelist(){
+        return "mate/mateform";
+    }
 }

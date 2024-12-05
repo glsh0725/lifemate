@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class AdminControllerImpl implements AdminController {
     }
 
     @Override
-    @GetMapping("/admin/admin")
+    @GetMapping("/admin/userList")
     public ModelAndView listUsers(HttpServletRequest request,
                                   HttpServletResponse response) throws Exception {
 
