@@ -4,10 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<%
-    request.setCharacterEncoding("UTF-8");
-%>
-
 <html>
 <head>
     <meta charset="UTF-8">
@@ -17,6 +13,13 @@
     <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 </head>
 <body>
+    <section class="calendar-section">
+        <div class="calendar-controls">
+            <select id="year-select"></select>
+            <select id="month-select"></select>
+        </div>
+        <div id="calendar"></div>
+    </section>
     <main>
         <h1>축제 리스트</h1>
         <section class="festival-section">
@@ -30,20 +33,21 @@
                 </c:forEach>
             </ul>
             <div class="pagination">
-                <c:if test="${currentPage > 1}">
-                    <a href="${contextPath}/festival?page=${currentPage - 1}" class="prev">이전</a>
+                <c:if test="${prevGroup > 0}">
+                    <a href="${contextPath}/festival?page=${prevGroup}" class="prev">이전</a>
                 </c:if>
 
-                <c:forEach begin="1" end="${totalPages}" var="pageNum">
+                <c:forEach begin="${startPage}" end="${endPage}" var="pageNum">
                     <a href="${contextPath}/festival?page=${pageNum}"
                        class="${pageNum == currentPage ? 'active' : ''}">${pageNum}</a>
                 </c:forEach>
 
-                <c:if test="${currentPage < totalPages}">
-                    <a href="${contextPath}/festival?page=${currentPage + 1}" class="next">다음</a>
+                <c:if test="${nextGroup > 0}">
+                    <a href="${contextPath}/festival?page=${nextGroup}" class="next">다음</a>
                 </c:if>
             </div>
         </section>
     </main>
+    <script src="${contextPath}/js/festival/festival.js"></script>
 </body>
 </html>
