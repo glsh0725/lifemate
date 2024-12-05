@@ -9,7 +9,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -72,6 +75,61 @@ public class FestivalServiceImpl implements FestivalService {
             return new ArrayList<>();
         }
         return allFestivals.subList(fromIndex, toIndex);
+    }
+
+    @Override
+    public List<FestivalVO> getFestivalsByDate(String date) {
+        List<FestivalVO> filteredFestivals = new ArrayList<>();
+        try {
+            List<FestivalVO> allFestivals = getAllFestivals();
+
+            for (FestivalVO festival : allFestivals) {
+                String startDate = festival.getFstvlStartDate();
+                String endDate = festival.getFstvlEndDate();
+
+                if (isDateInRange(date, startDate, endDate)) {
+                    filteredFestivals.add(festival);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return filteredFestivals;
+    }
+
+    @Override
+    public List<FestivalVO> getFestivalsByDateAndAddress(String date, String address) {
+        List<FestivalVO> filteredFestivals = new ArrayList<>();
+        try {
+            List<FestivalVO> allFestivals = getAllFestivals();
+
+            for (FestivalVO festival : allFestivals) {
+                String startDate = festival.getFstvlStartDate();
+                String endDate = festival.getFstvlEndDate();
+                String festivalAddress = festival.getAddress();
+
+                if (isDateInRange(date, startDate, endDate) && festivalAddress.contains(address)) {
+                    filteredFestivals.add(festival);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return filteredFestivals;
+    }
+
+    private boolean isDateInRange(String date, String startDate, String endDate) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date selectedDate = sdf.parse(date);
+            Date festivalStartDate = sdf.parse(startDate);
+            Date festivalEndDate = sdf.parse(endDate);
+
+            return !selectedDate.before(festivalStartDate) && !selectedDate.after(festivalEndDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private String getApiResponse(String apiUrl) {
