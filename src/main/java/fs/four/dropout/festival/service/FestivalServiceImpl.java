@@ -17,38 +17,44 @@ public class FestivalServiceImpl implements FestivalService {
 
     private static final String BASE_API_URL = "http://api.data.go.kr/openapi/tn_pubr_public_cltur_fstvl_api"
             + "?serviceKey=9E5LkDla3NtpffFe9%2BgzMow%2FMoH2X%2B5xQNVxuvQwz5uvf3KsPlXqUX40L%2FK9wbDbDKJVGQLIJZkhKKGHC%2Fzrgg%3D%3D"
-            + "&numOfRows=100&type=json&pageNo=1";
+            + "&numOfRows=100&type=json";
 
     @Override
     public List<FestivalVO> getAllFestivals() {
         List<FestivalVO> allFestivals = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
+        int pageNo = 1;
 
         try {
-            String response = getApiResponse(BASE_API_URL);
-            if (response == null) return allFestivals;
+            while (true) {
+                String response = getApiResponse(BASE_API_URL + "&pageNo=" + pageNo);
+                if (response == null) break;
 
-            JsonNode itemsNode = objectMapper.readTree(response)
-                    .path("response")
-                    .path("body")
-                    .path("items");
+                JsonNode itemsNode = objectMapper.readTree(response)
+                        .path("response")
+                        .path("body")
+                        .path("items");
 
-            if (itemsNode.isArray()) {
-                for (JsonNode item : itemsNode) {
-                    FestivalVO festival = objectMapper.treeToValue(item, FestivalVO.class);
+                if (itemsNode.isArray() && itemsNode.size() > 0) {
+                    for (JsonNode item : itemsNode) {
+                        FestivalVO festival = objectMapper.treeToValue(item, FestivalVO.class);
 
-                    String address = item.path("rdnmadr").asText();
-                    if (address.isEmpty()) {
-                        address = item.path("lnmadr").asText();
-                    }
-                    if (!address.isEmpty()) {
-                        String[] words = address.split(" ");
-                        if (words.length > 1) {
-                            address = words[0] + " " + words[1];
+                        String address = item.path("rdnmadr").asText();
+                        if (address.isEmpty()) {
+                            address = item.path("lnmadr").asText();
                         }
+                        if (!address.isEmpty()) {
+                            String[] words = address.split(" ");
+                            if (words.length > 1) {
+                                address = words[0] + " " + words[1];
+                            }
+                        }
+                        festival.setAddress(address);
+                        allFestivals.add(festival);
                     }
-                    festival.setAddress(address);
-                    allFestivals.add(festival);
+                    pageNo++;
+                } else {
+                    break;
                 }
             }
         } catch (Exception e) {

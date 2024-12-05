@@ -22,7 +22,7 @@
     <%-- 내용작성 --%>
 
     <div class="mate-container">
-        <h1>함께할 메이트를 선택해주세요.</h1>
+        <h1>함께할 메이트를 선택해 주세요.</h1>
         <form action="${pageContext.request.contextPath}/mate" method="post" id="mateForm">
             <div class="form-group-kid">
                 <button type="button">유아</button>
