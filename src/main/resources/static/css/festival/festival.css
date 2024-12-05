@@ -1,0 +1,12 @@
+.festival-list {
+    list-style: none;
+    padding: 0;
+}
+
+.festival-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
