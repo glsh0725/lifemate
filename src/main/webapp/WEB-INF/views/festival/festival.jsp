@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    isELIgnored="false"  %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+    isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <html>
@@ -16,20 +16,21 @@
     </script>
 </head>
 <body>
-    <h1>월별 축제달력</h1>
-    <section class="calendar-section">
-        <div class="calendar-controls">
-            <select id="year-select"></select>
-            <select id="month-select"></select>
-        </div>
-        <div id="calendar"></div>
-    </section>
-    <form method="get" action="${contextPath}/festival">
-        <input type="text" name="address" placeholder="주소로 검색" value="${searchAddress}" />
-        <button type="submit">검색</button>
-    </form>
-    <h1>축제 리스트</h1>
-    <main>
+    <main class="festival-main">
+        <h1>월별 축제달력</h1>
+        <section class="calendar-section">
+            <div class="calendar-controls">
+                <select id="year-select"></select>
+                <select id="month-select"></select>
+            </div>
+            <div id="calendar"></div>
+        </section>
+        <form class="festival-search-form" method="get" action="${contextPath}/festival">
+            <input type="hidden" id="selected-date" name="date" value="${selectedDate}" />
+            <input type="text" name="address" placeholder="주소로 검색" value="${selectedAddress}" />
+            <button type="submit">검색</button>
+        </form>
+        <h1>축제 리스트</h1>
         <section class="festival-section">
             <ul class="festival-list">
                 <c:forEach var="festival" items="${festivals}">
@@ -42,16 +43,14 @@
             </ul>
             <div class="pagination">
                 <c:if test="${prevGroup > 0}">
-                    <a href="${contextPath}/festival?page=${prevGroup}" class="prev">이전</a>
+                    <a href="${contextPath}/festival?page=${prevGroup}&date=${selectedDate}&address=${selectedAddress}" class="prev">이전</a>
                 </c:if>
-
                 <c:forEach begin="${startPage}" end="${endPage}" var="pageNum">
-                    <a href="${contextPath}/festival?page=${pageNum}"
+                    <a href="${contextPath}/festival?page=${pageNum}&date=${selectedDate}&address=${selectedAddress}"
                        class="${pageNum == currentPage ? 'active' : ''}">${pageNum}</a>
                 </c:forEach>
-
                 <c:if test="${nextGroup > 0}">
-                    <a href="${contextPath}/festival?page=${nextGroup}" class="next">다음</a>
+                    <a href="${contextPath}/festival?page=${nextGroup}&date=${selectedDate}&address=${selectedAddress}" class="next">다음</a>
                 </c:if>
             </div>
         </section>

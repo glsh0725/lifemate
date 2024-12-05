@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const monthSelect = document.getElementById("month-select");
     const prevMonthButton = document.createElement("button");
     const nextMonthButton = document.createElement("button");
+    const selectedDateInput = document.getElementById("selected-date");
 
     prevMonthButton.textContent = "이전 달";
     nextMonthButton.textContent = "다음 달";
@@ -12,8 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
     calendarControls.appendChild(prevMonthButton);
     calendarControls.appendChild(nextMonthButton);
 
-    function populateYearAndMonth() {
-        const currentYear = new Date().getFullYear();
+    function populateYearAndMonth(selectedDate) {
+        const currentYear = new Date(selectedDate).getFullYear();
+        const currentMonth = new Date(selectedDate).getMonth();
+
         for (let i = currentYear - 5; i <= currentYear + 5; i++) {
             const option = document.createElement("option");
             option.value = i;
@@ -28,10 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
             option.textContent = i + 1;
             monthSelect.appendChild(option);
         }
-        monthSelect.value = new Date().getMonth();
+        monthSelect.value = currentMonth;
     }
 
-    function generateCalendar(year, month) {
+    function generateCalendar(year, month, selectedDate) {
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const firstDay = new Date(year, month, 1).getDay();
 
@@ -50,51 +53,53 @@ document.addEventListener("DOMContentLoaded", function () {
             <tbody>`;
 
         let day = 1;
-        let rowCreated = false;
+        let hasContent = false;
 
         for (let i = 0; i < 6; i++) {
             let rowHtml = "<tr>";
-            let cellsCreated = false;
+            hasContent = false;
+
             for (let j = 0; j < 7; j++) {
+                const currentDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
                 if (i === 0 && j < firstDay || day > daysInMonth) {
                     rowHtml += "<td></td>";
                 } else {
-                    rowHtml += `<td class="calendar-day" data-date="${year}-${month + 1}-${day}">${day}</td>`;
+                    const isSelected = selectedDate === currentDate ? "selected" : "";
+                    rowHtml += `<td class="calendar-day ${isSelected}" data-date="${currentDate}">${day}</td>`;
                     day++;
-                    cellsCreated = true;
+                    hasContent = true;
                 }
             }
+
             rowHtml += "</tr>";
-            if (cellsCreated) {
+            if (hasContent) {
                 html += rowHtml;
-                rowCreated = true;
             }
         }
         html += "</tbody></table>";
+        calendar.innerHTML = html;
 
-        if (rowCreated) {
-            calendar.innerHTML = html;
-        }
-
-        const days = document.querySelectorAll(".calendar-day");
-        days.forEach(day => {
+        document.querySelectorAll(".calendar-day").forEach(day => {
             day.addEventListener("click", function () {
                 const selectedDate = this.dataset.date;
+                selectedDateInput.value = selectedDate;
                 fetchFestivalsByDate(selectedDate);
             });
         });
     }
 
     function fetchFestivalsByDate(date) {
-        window.location.href = `${contextPath}/festival?date=${date}`;
+        const url = `${contextPath}/festival?date=${date}`;
+        window.location.href = url;
     }
 
     yearSelect.addEventListener("change", function () {
-        generateCalendar(Number(yearSelect.value), Number(monthSelect.value));
+        generateCalendar(Number(yearSelect.value), Number(monthSelect.value), selectedDateInput.value);
     });
 
     monthSelect.addEventListener("change", function () {
-        generateCalendar(Number(yearSelect.value), Number(monthSelect.value));
+        generateCalendar(Number(yearSelect.value), Number(monthSelect.value), selectedDateInput.value);
     });
 
     prevMonthButton.addEventListener("click", function () {
@@ -110,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         monthSelect.value = currentMonth;
         yearSelect.value = currentYear;
-        generateCalendar(currentYear, currentMonth);
+        generateCalendar(currentYear, currentMonth, selectedDateInput.value);
     });
 
     nextMonthButton.addEventListener("click", function () {
@@ -126,10 +131,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         monthSelect.value = currentMonth;
         yearSelect.value = currentYear;
-        generateCalendar(currentYear, currentMonth);
+        generateCalendar(currentYear, currentMonth, selectedDateInput.value);
     });
 
-    populateYearAndMonth();
-    const today = new Date();
-    generateCalendar(today.getFullYear(), today.getMonth());
+    const today = new Date(selectedDateInput.value || new Date());
+    populateYearAndMonth(today);
+    generateCalendar(today.getFullYear(), today.getMonth(), selectedDateInput.value);
 });
