@@ -23,30 +23,41 @@
         <form action="${contextPath}/community/save" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
-                <label for="tag">여행 태그</label>
-                <select name="tag" id="tag" required>
-                    <option value="당일여행">당일여행</option>
-                    <option value="1박2일">1박2일</option>
-                    <option value="2박3일">2박3일</option>
-                    <option value="3박4일">3박4일</option>
-                    <option value="단거리여행">단거리여행</option>
-                    <option value="장거리여행">장거리여행</option>
-                </select>
-            </div>
-
-            <div class="form-group">
                 <label for="title">제목</label>
                 <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
             </div>
+
+
+
+            <div class="form-group">
+                <label for="thumbnail">대표이미지</label>
+                <input type="file" id="thumbnailimage" name="thumbnailimage" accept="image/*">
+             </div>
 
             <div class="form-group">
                 <label for="location">지역</label>
                 <input type="text" id="location" name="location" placeholder="지역을 입력하세요 (예: 전라남도 순천시)" required>
             </div>
+            <div class="form-group">
+                <label for="tag">여행 태그</label>
+                <select name="tag" id="tag" required>
+                <option value="당일여행">당일여행</option>
+                <option value="1박2일">1박2일</option>
+                <option value="2박3일">2박3일</option>
+                <option value="3박4일">3박4일</option>
+                <option value="단거리여행">단거리여행</option>
+                <option value="장거리여행">장거리여행</option>
+                </select>
+            </div>
 
             <div class="form-group">
-                <label for="image">이미지 업로드</label>
+                <label for="image">이미지 첨부</label>
                 <input type="file" id="image" name="image" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="video">동영상 첨부</label>
+                <input type="file" id="video" name="video" accept="video/*">
             </div>
 
             <div class="form-group">
