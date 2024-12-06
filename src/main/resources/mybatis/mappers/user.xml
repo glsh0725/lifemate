@@ -7,6 +7,7 @@
         <result property="usr_password" column="usr_password"/>
         <result property="usr_nickname" column="usr_nickname"/>
         <result property="usr_email" column="usr_email"/>
+        <result property="usr_email_optout" column="usr_email_optout"/>
         <result property="usr_join_date" column="usr_join_date"/>
     </resultMap>
 
@@ -25,12 +26,4 @@
         ]]>
     </insert>
 
-    <!--<select id="selectAllUserList" resultType="UserVO">
-        <![CDATA[
-        select *
-        from LM_USER
-        order by USR_JOIN_DATE desc
-        ]]>
-
-    </select>-->
 </mapper>
