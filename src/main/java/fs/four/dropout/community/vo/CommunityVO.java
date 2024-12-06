@@ -22,6 +22,7 @@ public class CommunityVO {
     private String com_video_name;
     private String com_video_path;
     private String com_content;
+    private String usr_nickname;
     private Number com_view_count;
     private Number com_like_count;
     private Number com_report_count;
@@ -132,12 +133,12 @@ public class CommunityVO {
         this.com_content = com_content;
     }
 
-    public Date getCom_post_date() {
-        return com_post_date;
+    public String getUsr_nickname() {
+        return usr_nickname;
     }
 
-    public void setCom_post_date(Date com_post_date) {
-        this.com_post_date = com_post_date;
+    public void setUsr_nickname(String usr_nickname) {
+        this.usr_nickname = usr_nickname;
     }
 
     public Number getCom_view_count() {
@@ -194,6 +195,14 @@ public class CommunityVO {
 
     public void setCom_updated_date(Timestamp com_updated_date) {
         this.com_updated_date = com_updated_date;
+    }
+
+    public Date getCom_post_date() {
+        return com_post_date;
+    }
+
+    public void setCom_post_date(Date com_post_date) {
+        this.com_post_date = com_post_date;
     }
 }
 

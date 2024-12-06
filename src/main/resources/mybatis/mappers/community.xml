@@ -16,4 +16,12 @@
         ]]>
     </insert>
 
+<!--    <select id="selectAllPostList" resultType="CommunityVO">-->
+<!--        <![CDATA[-->
+<!--        select *-->
+<!--        from lm_community-->
+<!--        order by com_post_number desc-->
+<!--        ]]>-->
+<!--    </select>-->
+
 </mapper>
