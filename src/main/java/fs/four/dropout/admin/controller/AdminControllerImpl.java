@@ -25,13 +25,8 @@ public class AdminControllerImpl implements AdminController {
     @Autowired
     private AdminVO adminVO;
 
-    @GetMapping("/admin")
-    public String adminPage() {
-        return "admin/admin";
-    }
-
     @Override
-    @GetMapping("/admin/userList")
+    @GetMapping("/admin")
     public ModelAndView listUsers(HttpServletRequest request,
                                   HttpServletResponse response) throws Exception {
 
