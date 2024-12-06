@@ -1,6 +1,7 @@
 package fs.four.dropout.community.vo;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -21,7 +22,6 @@ public class CommunityVO {
     private String com_video_name;
     private String com_video_path;
     private String com_content;
-    private Date com_post_date;
     private Number com_view_count;
     private Number com_like_count;
     private Number com_report_count;
@@ -29,6 +29,8 @@ public class CommunityVO {
     private Timestamp com_created_date;
     private String com_updated_id;
     private Timestamp com_updated_date;
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
+    private Date com_post_date;
 
     public CommunityVO() {
 

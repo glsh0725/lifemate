@@ -3,24 +3,16 @@
 
 <mapper namespace="fs.four.dropout.community.dao.CommunityWriteDAO">
     <resultMap id="communityResult" type="communityVO">
-<!--        <result property="com_post_number" column="com_post_number"/>-->
-<!--        <result property="usr_id" column="usr_id"/>-->
         <result property="com_title" column="com_title"/>
-<!--        <result property="com_thumbnail_name" column="com_thumbnail_name"/>-->
         <result property="com_location" column="com_location"/>
         <result property="com_content" column="com_content"/>
+        <result property="com_post_date" column="com_post_date"/>
     </resultMap>
 
-    <insert id="insertCommunityWrite" parameterType="communityVO">
-<!--        <selectKey keyProperty="com_post_number">-->
-
-<!--            SELECT SEQ_POST.nextval From DUAL;-->
-
-<!--        </selectKey>-->
-
+    <insert id="insertCommunityWrite" parameterType="communityWriteVO" useGeneratedKeys="true" keyProperty="com_post_number">
         <![CDATA[
-        insert into lm_community(com_title, com_location, com_content)
-        values (#{com_title}, #{com_location}, #{com_content})
+        insert into lm_community(com_post_number, com_title, com_location, com_content)
+        values (post_seq.nextval, #{com_title}, #{com_location}, #{com_content})
         ]]>
     </insert>
 

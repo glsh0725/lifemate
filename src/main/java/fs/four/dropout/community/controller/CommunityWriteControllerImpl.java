@@ -17,6 +17,7 @@ public class CommunityWriteControllerImpl implements CommunityWriteController {
     @Autowired
     private CommunityWriteService communityWriteService;
 
+
     @Autowired
     private CommunityWriteVO communityWriteVO;
 
