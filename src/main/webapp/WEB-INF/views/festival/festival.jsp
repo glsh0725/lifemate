@@ -39,6 +39,25 @@
                         <div class="festival-dates">${festival.fstvlStartDate} ~ ${festival.fstvlEndDate}</div>
                         <div class="festival-address">${festival.address}</div>
                     </li>
+                    <script>
+                        window.festivalData = window.festivalData || [];
+                        window.festivalData.push({
+                            fstvlNm: "${festival.fstvlNm}",
+                            opar: "${festival.opar}",
+                            fstvlStartDate: "${festival.fstvlStartDate}",
+                            fstvlEndDate: "${festival.fstvlEndDate}",
+                            fstvlCo: "${festival.fstvlCo}",
+                            mnnstNm: "${festival.mnnstNm}",
+                            auspcInsttNm: "${festival.auspcInsttNm}",
+                            suprtInsttNm: "${festival.suprtInsttNm}",
+                            phoneNumber: "${festival.phoneNumber}",
+                            homepageUrl: "${festival.homepageUrl}",
+                            relateInfo: "${festival.relateInfo}",
+                            rdnmadr: "${festival.rdnmadr}",
+                            lnmadr: "${festival.lnmadr}",
+                            referenceDate: "${festival.referenceDate}",
+                        });
+                    </script>
                 </c:forEach>
             </ul>
             <div class="pagination">
@@ -54,6 +73,25 @@
                 </c:if>
             </div>
         </section>
+        <div id="festival-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2 id="modal-title"></h2>
+                <p><strong>개최 장소:</strong> <span id="modal-opar"></span></p>
+                <p><strong>축제 시작일:</strong> <span id="modal-start-date"></span></p>
+                <p><strong>축제 종료일:</strong> <span id="modal-end-date"></span></p>
+                <p><strong>축제 내용:</strong> <span id="modal-description"></span></p>
+                <p><strong>주최 기관:</strong> <span id="modal-mnnstNm"></span></p>
+                <p><strong>주관 기관:</strong> <span id="modal-auspcInsttNm"></span></p>
+                <p><strong>후원 기관:</strong> <span id="modal-suprtInsttNm"></span></p>
+                <p><strong>전화번호:</strong> <span id="modal-phoneNumber"></span></p>
+                <p><strong>홈페이지:</strong> <a id="modal-homepage" href="#" target="_blank"></a></p>
+                <p><strong>관련 정보:</strong> <span id="modal-relateInfo"></span></p>
+                <p><strong>도로명 주소:</strong> <span id="modal-rdnmadr"></span></p>
+                <p><strong>지번 주소:</strong> <span id="modal-lnmadr"></span></p>
+                <p><strong>데이터 기준일:</strong> <span id="modal-referenceDate"></span></p>
+            </div>
+        </div>
     </main>
     <script src="${contextPath}/js/festival/festival.js"></script>
 </body>
