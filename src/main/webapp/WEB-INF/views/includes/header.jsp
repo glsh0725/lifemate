@@ -29,14 +29,22 @@
     <div class="header-container">
         <a href="${contextPath}/main" class="logo">
             <img width="100" height="90" src="${contextPath}/images/logo.png">
-            <h2>반려해로</h2>
+            <img width="250" height="90" src="${contextPath}/images/name.png">
         </a>
         <nav class="navbar">
             <ul>
-                <li><a href="${contextPath}/main">홈</a></li>
-                <li><a href="${contextPath}/mate">메이트</a></li>
-                <li><a href="${contextPath}/festival">축제정보</a></li>
-                <li><a href="${contextPath}/community">커뮤니티</a></li>
+                <li>
+                    <a href="${contextPath}/main" class="${pageContext.request.requestURI.contains('/main') ? 'active' : ''}">홈</a>
+                </li>
+                <li>
+                    <a href="${contextPath}/mate" class="${pageContext.request.requestURI.contains('/mate') ? 'active' : ''}">메이트</a>
+                </li>
+                <li>
+                    <a href="${contextPath}/festival" class="${pageContext.request.requestURI.contains('/festival') ? 'active' : ''}">축제정보</a>
+                </li>
+                <li>
+                    <a href="${contextPath}/community" class="${pageContext.request.requestURI.contains('/community') ? 'active' : ''}">커뮤니티</a>
+                </li>
             </ul>
         </nav>
     </div>
