@@ -66,9 +66,10 @@ public class CommonControllerImpl implements CommonController {
                               RedirectAttributes rAttr,
                               HttpServletRequest request,
                               HttpServletResponse response) throws Exception {
+
         ModelAndView mav = new ModelAndView();
         userVO = loginService.login(user);
-        if (userVO == null) {
+        if (userVO != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", userVO);
             session.setAttribute("isLogOn", true);
