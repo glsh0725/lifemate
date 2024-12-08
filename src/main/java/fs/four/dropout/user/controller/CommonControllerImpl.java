@@ -87,4 +87,18 @@ public class CommonControllerImpl implements CommonController {
         }
         return mav;
     }
+
+    @Override
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpServletRequest request,
+                               HttpServletResponse response) throws Exception{
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        session.setAttribute("isLogOn", false);
+
+        ModelAndView mav = new ModelAndView();
+
+        mav.setViewName("redirect:/main");
+        return mav;
+    }
 }
