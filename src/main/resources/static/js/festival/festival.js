@@ -6,6 +6,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextMonthButton = document.createElement("button");
     const selectedDateInput = document.getElementById("selected-date");
 
+    const modal = document.getElementById("festival-modal");
+    const closeModalButton = modal.querySelector(".close-btn");
+
+    const modalTitle = document.getElementById("modal-title");
+    const modalOpar = document.getElementById("modal-opar");
+    const modalStartDate = document.getElementById("modal-start-date");
+    const modalEndDate = document.getElementById("modal-end-date");
+    const modalDescription = document.getElementById("modal-description");
+    const modalMnnstNm = document.getElementById("modal-mnnstNm");
+    const modalAuspcInsttNm = document.getElementById("modal-auspcInsttNm");
+    const modalSuprtInsttNm = document.getElementById("modal-suprtInsttNm");
+    const modalPhoneNumber = document.getElementById("modal-phoneNumber");
+    const modalHomepage = document.getElementById("modal-homepage");
+    const modalRelateInfo = document.getElementById("modal-relateInfo");
+    const modalRdnmadr = document.getElementById("modal-rdnmadr");
+    const modalLnmadr = document.getElementById("modal-lnmadr");
+    const modalReferenceDate = document.getElementById("modal-referenceDate");
+
     prevMonthButton.textContent = "이전 달";
     nextMonthButton.textContent = "다음 달";
 
@@ -137,4 +155,38 @@ document.addEventListener("DOMContentLoaded", function () {
     const today = new Date(selectedDateInput.value || new Date());
     populateYearAndMonth(today);
     generateCalendar(today.getFullYear(), today.getMonth(), selectedDateInput.value);
+
+    document.querySelectorAll(".festival-item").forEach((item, index) => {
+        item.addEventListener("click", function () {
+            const festival = window.festivalData[index];
+
+            modalTitle.textContent = festival.fstvlNm;
+            modalOpar.textContent = festival.opar || "N/A";
+            modalStartDate.textContent = festival.fstvlStartDate;
+            modalEndDate.textContent = festival.fstvlEndDate;
+            modalDescription.textContent = festival.fstvlCo || "N/A";
+            modalMnnstNm.textContent = festival.mnnstNm || "N/A";
+            modalAuspcInsttNm.textContent = festival.auspcInsttNm || "N/A";
+            modalSuprtInsttNm.textContent = festival.suprtInsttNm || "N/A";
+            modalPhoneNumber.textContent = festival.phoneNumber || "N/A";
+            modalHomepage.textContent = festival.homepageUrl || "N/A";
+            modalHomepage.href = festival.homepageUrl || "#";
+            modalRelateInfo.textContent = festival.relateInfo || "N/A";
+            modalRdnmadr.textContent = festival.rdnmadr || "N/A";
+            modalLnmadr.textContent = festival.lnmadr || "N/A";
+            modalReferenceDate.textContent = festival.referenceDate || "N/A";
+
+            modal.style.display = "block";
+        });
+    });
+
+    closeModalButton.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
 });
