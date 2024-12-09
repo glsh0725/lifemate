@@ -22,55 +22,49 @@
         <!-- 메인 슬라이드 -->
         <section class="main-slide">
             <div class="slide-container1">
-                <div class="slide">
-                    <img src="/static/images/slide1.jpg" alt="슬라이드 이미지 1">
-                </div>
-                <div class="slide">
-                    <img src="/static/images/slide2.jpg" alt="슬라이드 이미지 2">
-                </div>
-                <div class="slide">
-                    <img src="/static/images/slide3.jpg" alt="슬라이드 이미지 3">
+                <div class="slide1"></div>
+                <div class="slide-control-container">
+                    <div class="slide-delay-bar">
+                        <div class="delay-bar-progress"></div>
+                    </div>
+                    <span id="slide-indicator">01/03</span>
+                    <div class="slide-controls">
+                        <button id="prev">Prev</button>
+                        <button id="toggle">Start</button>
+                        <button id="next">Next</button>
+                    </div>
                 </div>
             </div>
             <div class="slide-container2">
-                <div class="slide">
-                    <img src="/static/images/slide4.jpg" alt="슬라이드 이미지 1">
-                </div>
-                <div class="slide">
-                    <img src="/static/images/slide5.jpg" alt="슬라이드 이미지 2">
-                </div>
-                <div class="slide">
-                    <img src="/static/images/slide6.jpg" alt="슬라이드 이미지 3">
-                </div>
-            </div>
-            <div class="slide-controls">
-                <button id="prev">Prev</button>
-                <button id="start">Start</button>
-                <button id="stop">Stop</button>
-                <button id="next">Next</button>
+                <div class="slide2"></div>
             </div>
         </section>
 
         <!-- 메인 소개 -->
-        <section class="intro">
-            <div class="intro-item">
-                <p>소개글 작성</p>
-            </div>
-        </section>
-        <section class="detail">
-            <div class="detail-item">
-                <h2>메이트</h2>
-                <a href="#" class="button">알아보기</a>
-            </div>
-            <div class="detail-item">
-                <h2>축제정보</h2>
-                <a href="#" class="button">알아보기</a>
-            </div>
-            <div class="detail-item">
-                <h2>커뮤니티</h2>
-                <a href="#" class="button">알아보기</a>
-            </div>
-        </section>
+        <div class="introduce">
+            <section class="intro">
+                <div class="intro-item">
+                    <h3>소개글</h3>
+                </div>
+            </section>
+            <section class="detail">
+                <h3>자세히보기</h3>
+                <div class="detail-list">
+                    <div class="detail-item">
+                        <h2>메이트</h2>
+                        <a href="#" class="button">알아보기</a>
+                    </div>
+                    <div class="detail-item">
+                        <h2>축제정보</h2>
+                        <a href="#" class="button">알아보기</a>
+                    </div>
+                    <div class="detail-item">
+                        <h2>커뮤니티</h2>
+                        <a href="#" class="button">알아보기</a>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <%@ include file="/WEB-INF/views/includes/footer.jsp" %>
