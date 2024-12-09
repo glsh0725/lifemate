@@ -44,14 +44,18 @@ document.getElementById("stateSelect").addEventListener("change", function() {
 });
 
 // 선택 완료 버튼
+
 document.getElementById("confirmLocation").addEventListener("click", function() {
     const state = document.getElementById("stateSelect").value;
     const city = document.getElementById("citySelect").value;
 
+    console.log("선택된 시/도:", state);
+    console.log("선택된 시군구:", city);
+
     // 선택된 지역을 화면에 표시
     if (state && city) {
         const com_location = document.getElementById("com_location");
-        com_location.textContent = "선택한 지역: " + state + " " + city;
+        com_location.value = state + " " + city;  // 'value' 속성에 값을 설정하여 input에 반영
     } else {
         alert("시/도와 시군구를 모두 선택하세요.");
     }
