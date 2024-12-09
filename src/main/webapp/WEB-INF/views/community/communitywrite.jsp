@@ -106,4 +106,7 @@
         </div>
     </div>
 
-
+    <script src="${contextPath}/js/community/locationSelect.js"></script>
+    </main>
+</body>
+</html>
