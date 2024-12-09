@@ -4,10 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const delayBarProgress = document.querySelector(".delay-bar-progress");
     const slideIndicator = document.getElementById("slide-indicator");
     const images1 = ["/images/main/main1.jpg", "/images/main/main2.jpg", "/images/main/main3.jpg"];
-    const images2 = ["/images/main/main1.jpg", "/images/main/main2.jpg", "/images/main/main3.jpg"];
+    const images2 = ["/images/main/main4.jpg", "/images/main/main5.jpg", "/images/main/main6.jpg"];
     let currentIndex1 = 0;
     let currentIndex2 = 0;
-    const slideInterval = 7000;
+    const slideInterval = 9000;
     let interval = null;
     let delayBarStartTime = 0;
     let delayBarElapsedTime = 0;
@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function resumeDelayBar() {
-        delayBarStartTime = Date.now();
         const remainingTime = slideInterval - delayBarElapsedTime;
+        delayBarStartTime = Date.now();
         delayBarProgress.style.transition = `width ${remainingTime}ms linear`;
         delayBarProgress.style.width = "100%";
     }
@@ -59,11 +59,18 @@ document.addEventListener("DOMContentLoaded", () => {
             toggleButton.textContent = "Start";
             isPlaying = false;
         } else {
-            interval = setInterval(() => {
+            const remainingTime = slideInterval - delayBarElapsedTime;
+            interval = setTimeout(() => {
                 currentIndex1 = (currentIndex1 + 1) % images1.length;
                 currentIndex2 = (currentIndex2 + 1) % images2.length;
                 updateSlide();
-            }, slideInterval);
+                interval = setInterval(() => {
+                    currentIndex1 = (currentIndex1 + 1) % images1.length;
+                    currentIndex2 = (currentIndex2 + 1) % images2.length;
+                    updateSlide();
+                }, slideInterval);
+                resetDelayBar();
+            }, remainingTime);
             resumeDelayBar();
             toggleButton.textContent = "Stop";
             isPlaying = true;
@@ -74,18 +81,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("prev").addEventListener("click", () => {
         clearInterval(interval);
-        pauseDelayBar();
+        delayBarElapsedTime = 0;
         currentIndex1 = (currentIndex1 - 1 + images1.length) % images1.length;
         currentIndex2 = (currentIndex2 - 1 + images2.length) % images2.length;
         updateSlide();
+
+        if (isPlaying) {
+            interval = setInterval(() => {
+                currentIndex1 = (currentIndex1 + 1) % images1.length;
+                currentIndex2 = (currentIndex2 + 1) % images2.length;
+                updateSlide();
+            }, slideInterval);
+            resetDelayBar();
+        }
     });
 
     document.getElementById("next").addEventListener("click", () => {
         clearInterval(interval);
-        pauseDelayBar();
+        delayBarElapsedTime = 0;
         currentIndex1 = (currentIndex1 + 1) % images1.length;
         currentIndex2 = (currentIndex2 + 1) % images2.length;
         updateSlide();
+
+        if (isPlaying) {
+            interval = setInterval(() => {
+                currentIndex1 = (currentIndex1 + 1) % images1.length;
+                currentIndex2 = (currentIndex2 + 1) % images2.length;
+                updateSlide();
+            }, slideInterval);
+            resetDelayBar();
+        }
     });
 
     updateSlide();
