@@ -92,4 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         toggleSlideShow();
     }, 100);
+
+    const topButtons = document.querySelectorAll(".top-button");
+    const firstSection = document.querySelector(".main-section");
+
+    topButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            firstSection.scrollIntoView({ behavior: "smooth" });
+        });
+    });
 });

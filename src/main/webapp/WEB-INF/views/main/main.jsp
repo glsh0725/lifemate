@@ -15,10 +15,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인</title>
     <link rel="stylesheet" href="${contextPath}/css/main/main.css">
-    <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 </head>
 <body>
-    <main>
+<main class="max fixed">
+    <section id="welcome-page" class="main-section">
+    <%@ include file="/WEB-INF/views/includes/header.jsp" %>
         <!-- 메인 슬라이드 -->
         <section class="main-slide">
             <div class="slide-container1">
@@ -51,23 +52,79 @@
                 <h3>자세히보기</h3>
                 <div class="detail-list">
                     <div class="detail-item">
-                        <h2>메이트</h2>
-                        <a href="#" class="button">알아보기</a>
+                        <h2>🐾 메이트</h2>
+                        <a href="#mate-section" class="button">알아보기</a>
                     </div>
                     <div class="detail-item">
-                        <h2>축제정보</h2>
-                        <a href="#" class="button">알아보기</a>
+                        <h2>🐾 축제정보</h2>
+                        <a href="#festival-section" class="button">알아보기</a>
                     </div>
                     <div class="detail-item">
-                        <h2>커뮤니티</h2>
-                        <a href="#" class="button">알아보기</a>
+                        <h2>🐾 커뮤니티</h2>
+                        <a href="#community-section" class="button">알아보기</a>
                     </div>
                 </div>
             </section>
         </div>
-    </main>
+    </section>
 
+    <section id="mate-section" class="main-section">
+        <div class="box main-box">
+            <h2>메이트</h2>
+            <div class="main-box-header">
+                <p>목적</p>
+                <p>설명</p>
+            </div>
+            <h2>주요기능설명</h2>
+            <ul class="list">
+                <li><strong>주</strong> 주</li>
+                <li><strong>요</strong> 요</li>
+                <li><strong>기</strong> 기</li>
+                <li><strong>능</strong> 능</li>
+            </ul>
+            <a class="main-button" href="/mate">메이트 바로가기 ➽</a>
+        </div>
+    </section>
+
+    <section id="festival-section" class="main-section">
+        <div class="box main-box">
+            <h2>축제정보</h2>
+            <div class="main-box-header">
+                <p>목적</p>
+                <p>설명</p>
+            </div>
+            <h2>주요기능설명</h2>
+            <ul class="list">
+                <li><strong>주</strong> 주</li>
+                <li><strong>요</strong> 요</li>
+                <li><strong>기</strong> 기</li>
+                <li><strong>능</strong> 능</li>
+            </ul>
+            <a class="main-button" href="/festival">축제정보 바로가기 ➽</a>
+        </div>
+    </section>
+
+    <section id="community-section" class="main-section">
+        <div class="box main-box">
+            <h2>커뮤니티</h2>
+            <div class="main-box-header">
+                <p>목적</p>
+                <p>설명</p>
+            </div>
+            <h2>주요기능설명</h2>
+            <ul class="list">
+                <li><strong>주</strong> 주</li>
+                <li><strong>요</strong> 요</li>
+                <li><strong>기</strong> 기</li>
+                <li><strong>능</strong> 능</li>
+            </ul>
+            <a class="main-button" href="/community">커뮤니티 바로가기 ➽</a>
+        </div>
+    </section>
+
+    <button class="top-button">▲ Top</button>
     <%@ include file="/WEB-INF/views/includes/footer.jsp" %>
+</main>
 </body>
 <script src="${contextPath}/js/main/main.js"></script>
 </html>
