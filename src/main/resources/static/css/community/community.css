@@ -36,6 +36,13 @@ body {
     transform: translateY(-5px); /* 호버 시 약간 상승 효과 */
 }
 
+/* 링크 기본 스타일 제거 */
+.post-link {
+    text-decoration: none;  /* 밑줄 제거 */
+    color: inherit;  /* 글자 색상 상속 */
+    display: block;  /* 링크가 div처럼 전체 영역을 차지하도록 */
+}
+
 /* 이미지 자리 표시자 */
 .image-placeholder {
     background: #eee;
