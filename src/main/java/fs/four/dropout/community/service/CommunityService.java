@@ -8,5 +8,5 @@ public interface CommunityService {
 
     public List listPosts() throws Exception;
 
-    CommunityViewVO getPostById(Long postId);
+    CommunityViewVO getPostById(Number postId);
 }
