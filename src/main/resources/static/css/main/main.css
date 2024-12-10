@@ -242,7 +242,7 @@ main.fixed::-webkit-scrollbar {
 
 .detail-list {
     position: relative;
-    top: 40%;
+    top: 34%;
     left: 55%;
     transform: translate(-50%, -50%);
     width: 80%;
