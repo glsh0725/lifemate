@@ -29,7 +29,7 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public CommunityViewVO getPostById(Long postId) {
+    public CommunityViewVO getPostById(Number postId) {
         return null;
     }
 }
