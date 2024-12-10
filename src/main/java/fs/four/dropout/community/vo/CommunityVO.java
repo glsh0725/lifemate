@@ -1,6 +1,7 @@
 package fs.four.dropout.community.vo;
 
 
+import fs.four.dropout.admin.vo.AdminVO;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Component("communityVO")
-public class CommunityVO {
+public class CommunityVO extends AdminVO {
 
     private Number com_post_number;
     private String usr_id;

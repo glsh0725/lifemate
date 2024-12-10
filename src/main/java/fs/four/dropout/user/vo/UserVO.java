@@ -1,12 +1,13 @@
 package fs.four.dropout.user.vo;
 
+import fs.four.dropout.admin.vo.AdminVO;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
 @Component("userVO")
-public class UserVO {
+public class UserVO extends AdminVO {
 
     private String usr_id;
     private String usr_password;

@@ -8,6 +8,7 @@
         select *
         from lm_user
         order by usr_join_date desc
+
         ]]>
     </select>
 

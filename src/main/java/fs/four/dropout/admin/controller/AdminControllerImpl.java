@@ -2,11 +2,13 @@ package fs.four.dropout.admin.controller;
 
 import fs.four.dropout.admin.service.AdminService;
 import fs.four.dropout.admin.vo.AdminVO;
+import fs.four.dropout.community.vo.CommunityVO;
 import fs.four.dropout.user.vo.UserVO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,6 +26,9 @@ public class AdminControllerImpl implements AdminController {
     @Autowired
     private AdminVO adminVO;
 
+    @Autowired
+    private CommunityVO communityVO;
+
     @Override
     @GetMapping("/admin")
     public ModelAndView listUsers(HttpServletRequest request,
@@ -37,6 +42,14 @@ public class AdminControllerImpl implements AdminController {
         mav.addObject("usersList", usersList);
         mav.addObject("communityList", communityList);
         return mav;
+    }
+
+    @GetMapping("/list")
+    public String selectUserList(Model model, UserVO userVO, CommunityVO communityVO) {
+        model.addAttribute("userList", adminService.selectUserList(userVO));
+        model.addAttribute("communityList", adminService.selectCommunityList(communityVO));
+
+        return "/admin/admin";
     }
 
 }
