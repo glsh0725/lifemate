@@ -21,13 +21,17 @@
     <main>
     <div class="board-container">
 
-     <form action="${pageContext.request.contextPath}/community" method="get" id="adminForm">
+<%--     <form action="${pageContext.request.contextPath}/community" method="get" id="adminForm">--%>
         <c:forEach var="post" items="${postsList}">
             <div class="board-card">
                 <div class="image-placeholder">이미지</div>
                 <div class="tag">${post.com_post_number}</div>
                 <div class="content">
-                    <h3 class="title">${post.com_title}</h3>
+                    <h3 class="title">
+                        <a href="${pageContext.request.contextPath}/community/postDetail?id=${post.com_post_number}">
+                            ${post.com_title}
+                        </a>
+                    </h3>
                     <p class="location">${post.com_location}</p>
                     <p class="author">닉네임 | ${post.usr_nickname}</p>
                     <p class="date">작성날짜: ${post.com_post_date}</p>
@@ -37,7 +41,7 @@
                 </div>
             </div>
         </c:forEach>
-        </form>
+<%--        </form>--%>
     </div>
 
     <%-- 페이지네이션 값 계산 --%>
