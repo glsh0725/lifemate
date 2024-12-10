@@ -32,19 +32,25 @@ function getSearchList() {
             var searchType = $("#search-type").val();
             var searchKeyword = $("#search-user").val();
 
-            if (searchKeyword){
-                if(searchType === "id") {
+            if (searchKeyword) {
+                if (searchType === "id") {
                     data = data.filter(user => user.usr_id.includes(searchKeyword));
                 } else if (searchType === "nickname") {
                     data = data.filter(user => user.usr_nickname.includes(searchKeyword));
                 }
             }
 
+            if (data.length === 0) {
+                let message = searchType === "id"
+                    ? "해당 아이디가 존재하지 않습니다."
+                    : "해당 닉네임이 존재하지 않습니다.";
+                alert(message);
+                return;
+            }
 
             // 테이블 초기화
-            // $("#tab1").empty();
-
             $("#usertable").empty();
+
 
             let tablelist = `
             <table>
@@ -92,26 +98,30 @@ function getSearchList2() {
         type: "GET",
         url: "/admin/communitylist",
         contentType: "application/json; charset=UTF-8",
-        success: function(data){
+        success: function (data) {
             alert(data);
             alert(JSON.stringify(data));
 
-            var searchTitle = $("#search-community").val();
+            var searchType = $("#search-type2").val();
+            var searchKeyword = $("#search-community").val();
 
-            if (searchTitle) {
-                data = data.filter(user => user.com_title.includes(searchTitle));  // usr_id 기준으로 필터링
+            if (searchKeyword) {
+                if (searchType === "title") {
+                    data = data.filter(item => item.com_title && item.com_title.includes(searchKeyword));
+                } else if (searchType === "nickname") {
+                    data = data.filter(item => item.usr_nickname && item.usr_nickname.includes(searchKeyword));
+                }
             }
 
-            // var searchType = $("search-type").val();
-            // var searchKeyword = $("search-user").val();
-            //
-            // if (searchKeyword){
-            //     if(searchType === "id") {
-            //         data = data.filter(user => user.usr_id)
-            //     }
-            // }
+            if (data.length === 0) {
+                let message = searchType === "title"
+                    ? "해당 게시글이 존재하지 않습니다."
+                    : "해당 닉네임이 존재하지 않습니다.";
+                alert(message);
+                return;
+            }
 
-            $("communitytable").empty();
+            $("#communitytable").empty();
 
             let tablelist = `
             
@@ -127,14 +137,19 @@ function getSearchList2() {
             `;
 
             data.forEach(community => {
+
+                const formattedDate = community.com_post_date
+                    ? formatDate(community.com_post_date)
+                    : "N/A";
+
                 tablelist += `
                 <tr align="center">
-                            <td>${community.com_post_number}</td>
-                            <td>${community.com_title}</td>
-                            <td>${community.usr_nickname}</td>
-                            <td>${community.com_post_number}</td>
-                            <td>${community.com_report_count}</td>
-                            <td>${community.com_post_date}</td>
+                            <td>${community.com_post_number || "N/A"}</td>
+                            <td>${community.com_title || "N/A"}</td>
+                            <td>${community.usr_nickname || "N/A"}</td>
+                            <td>${community.com_post_number || "N/A"}</td>
+                            <td>${community.com_report_count || 0}</td>
+                            <td>${community.com_post_date || "N/A"}</td>
                         </tr>
                 `;
             });
@@ -143,10 +158,19 @@ function getSearchList2() {
 
             $("#communitytable").html(tablelist);
         },
-        error: function (xhr, status, error){
+        error: function (xhr, status, error) {
             alert("community: " + xhr.status + "\n"
-                +"message " + xhr.responseText + "\n"
-                +"error: " + error);
+                + "message " + xhr.responseText + "\n"
+                + "error: " + error);
         }
     });
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);  // 날짜를 Date 객체로 변환
+        const year = String(date.getFullYear()).slice(-2);  // 연도의 마지막 두 자리
+        const month = String(date.getMonth() + 1).padStart(2, '0');  // 월 (1부터 시작하므로 +1)
+        const day = String(date.getDate()).padStart(2, '0');  // 일
+        return `${year}-${month}-${day}`;  // "YY-MM-DD" 형식으로 반환
+    }
+
 }

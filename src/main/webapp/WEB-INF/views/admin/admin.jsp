@@ -79,7 +79,7 @@
 
 
             <form name="search-form" autocomplete="off">
-                <select name="type">
+                <select id="search-type2" name="type">
                     <option selected value="">검색 내용 선택</option>
                     <option value="title">제목</option>
                     <option value="nickname">닉네임</option>

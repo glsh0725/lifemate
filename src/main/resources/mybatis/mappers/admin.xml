@@ -5,16 +5,24 @@
 
     <select id="selectAllUserList" resultType="UserVO">
         <![CDATA[
-        select *
+        select usr_id,
+               usr_password,
+               usr_nickname,
+               usr_email,
+               usr_email_optout,
+               TO_CHAR(usr_join_date, 'YYYY-MM-DD') AS usr_join_date
         from lm_user
         order by usr_join_date desc
-
         ]]>
     </select>
 
     <select id="selectAllCommunityList" resultType="CommunityVO">
         <![CDATA[
-        select *
+        select com_post_number,
+               COALESCE(com_title, 'N/A') AS com_title,
+               COALESCE(usr_nickname, 'N/A') AS usr_nickname,
+               TO_CHAR(com_post_date, 'YYYY-MM-DD') AS com_post_date,
+               COALESCE(com_report_count, 0) AS com_report_count
         from lm_community
         order by com_post_number desc
         ]]>

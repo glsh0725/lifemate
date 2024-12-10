@@ -14,7 +14,7 @@ public class UserVO extends AdminVO {
     private String usr_nickname;
     private String usr_email;
     private char usr_email_optout;
-    private Date usr_join_date;
+    private String usr_join_date;
     private char usr_withdraw;
     private Timestamp usr_created_date;
     private String usr_updated_id;
@@ -68,11 +68,11 @@ public class UserVO extends AdminVO {
         this.usr_email_optout = usr_email_optout;
     }
 
-    public Date getUsr_join_date() {
+    public String getUsr_join_date() {
         return usr_join_date;
     }
 
-    public void setUsr_join_date(Date usr_join_date) {
+    public void setUsr_join_date(String usr_join_date) {
         this.usr_join_date = usr_join_date;
     }
 
