@@ -24,7 +24,7 @@
 <%--     <form action="${pageContext.request.contextPath}/community" method="get" id="adminForm">--%>
         <c:forEach var="post" items="${postsList}">
             <div class="board-card">
-                <a href="${pageContext.request.contextPath}/community/postDetail?id=${post.com_post_number}" class="post-link">
+                <a href="${pageContext.request.contextPath}/community/communityview?id=${post.com_post_number}" class="post-link">
             <div class="image-placeholder">이미지</div>
             <div class="tag">${post.com_post_number}</div>
             <div class="content">
