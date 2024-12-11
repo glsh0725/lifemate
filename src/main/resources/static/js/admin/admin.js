@@ -16,6 +16,11 @@ function openTab(evt, tabName) {
 document.getElementById("tab1").style.display = "block";
 document.getElementsByClassName("tablink")[0].className += " active";
 
+// 삭제 확인
+function confirmDelete() {
+    return confirm("정말로 삭제하시겠습니까?");
+}
+
 // 검색 리스트
 function getSearchList() {
 
@@ -26,8 +31,6 @@ function getSearchList() {
         url: "/admin/userlist",
         contentType: "application/json; charset=UTF-8",
         success: function (data) {
-            alert(data);
-            alert(JSON.stringify(data));
 
             var searchType = $("#search-type").val();
             var searchKeyword = $("#search-user").val();
@@ -44,7 +47,14 @@ function getSearchList() {
                 let message = searchType === "id"
                     ? "해당 아이디가 존재하지 않습니다."
                     : "해당 닉네임이 존재하지 않습니다.";
-                alert(message);
+
+                $("#usertable").empty();
+                let noDataMessage = `
+                    <tr>
+                        <td colspan="6" align="center">${message}</td>
+                    </tr>
+                `;
+                $("#usertable").html(noDataMessage);
                 return;
             }
 
@@ -61,6 +71,7 @@ function getSearchList() {
                     <td><b>이메일</b></td>
                     <td><b>이메일 수신</b></td>
                     <td><b>가입일</b></td>
+                    <td><b>삭제</b></td>
                 </tr>
             `;
 
@@ -74,6 +85,9 @@ function getSearchList() {
                         <td>${user.usr_email}</td>
                         <td>${user.usr_email_optout}</td>
                         <td>${user.usr_join_date}</td>
+                        <td>
+                        <a href="#" class="delete-link" data-id="${user.usr_id}">삭제하기</a>
+                        </td>
                     </tr>
                 `;
             });
@@ -90,17 +104,44 @@ function getSearchList() {
         }
     });
 
+    $(document).on("click", ".delete-link", function (e) {
+        e.preventDefault();
+
+        const userId = $(this).data("id");
+
+        if (confirm("정말로 삭제하시겠습니까?")) {
+
+            $(this).prop("disabled", true).text("삭제하기");
+
+            $.ajax({
+                type: "GET",
+                url: "/admin/removeUser",
+                data: {id: userId},
+                success: function (response) {
+                    getSearchList();
+                },
+                error: function (xhr, status, error) {
+                    alert("삭제에 실패했습니다.");
+                },
+                complete: function () {
+                    $(this).prop("disabled", false).text("삭제하기");
+                }
+            });
+        }
+    });
+
 }
 
+
 function getSearchList2() {
+
+    event.preventDefault();
 
     $.ajax({
         type: "GET",
         url: "/admin/communitylist",
         contentType: "application/json; charset=UTF-8",
         success: function (data) {
-            alert(data);
-            alert(JSON.stringify(data));
 
             var searchType = $("#search-type2").val();
             var searchKeyword = $("#search-community").val();
@@ -117,7 +158,14 @@ function getSearchList2() {
                 let message = searchType === "title"
                     ? "해당 게시글이 존재하지 않습니다."
                     : "해당 닉네임이 존재하지 않습니다.";
-                alert(message);
+
+                $("#communitytable").empty();
+                let noDataMessage = `
+                    <tr>
+                        <td colspan="6" align="center">${message}</td>
+                    </tr>
+                `;
+                $("#communitytable").html(noDataMessage);
                 return;
             }
 
@@ -130,9 +178,9 @@ function getSearchList2() {
                         <td><b>번호</b></td>
                         <td><b>제목</b></td>
                         <td><b>닉네임</b></td>
-                        <td><b>게시물 관리</b></td>
                         <td><b>신고 내역</b></td>
-                        <td><b>작성날짜</b></td>
+                        <td><b>작성 날짜</b></td>
+                        <td><b>삭제</b></td>
                     </tr>
             `;
 
@@ -147,9 +195,11 @@ function getSearchList2() {
                             <td>${community.com_post_number || "N/A"}</td>
                             <td>${community.com_title || "N/A"}</td>
                             <td>${community.usr_nickname || "N/A"}</td>
-                            <td>${community.com_post_number || "N/A"}</td>
-                            <td>${community.com_report_count || 0}</td>
+                            <td>${community.com_report_count || 0}건</td>
                             <td>${community.com_post_date || "N/A"}</td>
+                            <td>
+                                <a href="#" class="delete-link" data-number="${community.com_post_number}">삭제하기</a>
+                            </td>
                         </tr>
                 `;
             });
@@ -165,12 +215,38 @@ function getSearchList2() {
         }
     });
 
+    $(document).on("click", ".delete-link", function (e) {
+        e.preventDefault();
+
+        const postNumber = $(this).data("number");
+
+        if (confirm("정말로 삭제하시겠습니까?")) {
+
+            $(this).prop("disabled", true).text("삭제하기");
+
+            $.ajax({
+                type: "GET",
+                url: "/admin/removeCommunity",
+                data: {number: postNumber},
+                success: function (response) {
+                    getSearchList2();
+                },
+                error: function (xhr, status, error) {
+                    alert("삭제에 실패했습니다.");
+                },
+                complete: function () {
+                    $(this).prop("disabled", false).text("삭제하기");
+                }
+            });
+        }
+    });
+
     function formatDate(dateString) {
-        const date = new Date(dateString);  // 날짜를 Date 객체로 변환
-        const year = String(date.getFullYear()).slice(-2);  // 연도의 마지막 두 자리
-        const month = String(date.getMonth() + 1).padStart(2, '0');  // 월 (1부터 시작하므로 +1)
-        const day = String(date.getDate()).padStart(2, '0');  // 일
-        return `${year}-${month}-${day}`;  // "YY-MM-DD" 형식으로 반환
+        const date = new Date(dateString);
+        const year = String(date.getFullYear()).slice(-2);
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
     }
 
 }
