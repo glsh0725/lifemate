@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -50,6 +51,30 @@ public class AdminControllerImpl implements AdminController {
         model.addAttribute("communityList", adminService.selectCommunityList(communityVO));
 
         return "/admin/admin";
+    }
+
+    /* 회원 삭제 기능 */
+    @Override
+    @GetMapping("/admin/removeUser")
+    public ModelAndView removeUser(@RequestParam("id") String id,
+                                   HttpServletRequest request,
+                                   HttpServletResponse response) throws Exception {
+        request.setCharacterEncoding("UTF-8");
+        adminService.removeUser(id);
+        ModelAndView mav = new ModelAndView("redirect:/admin");
+        return mav;
+    }
+
+    /* 커뮤니티 글 삭제 기능 */
+    @Override
+    @GetMapping("/admin/removeCommunity")
+    public ModelAndView removeCommunity(@RequestParam("number") String number,
+                                        HttpServletRequest request,
+                                        HttpServletResponse response) throws Exception {
+        request.setCharacterEncoding("UTF-8");
+        adminService.removeCommunity(number);
+        ModelAndView mav = new ModelAndView("redirect:/admin");
+        return mav;
     }
 
 }

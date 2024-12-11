@@ -54,6 +54,7 @@
                     <td><b>이메일</b></td>
                     <td><b>이메일 수신</b></td>
                     <td><b>가입일</b></td>
+                    <td><b>삭제</b></td>
                 </tr>
                 </thead>
 
@@ -65,6 +66,8 @@
                         <td>${user.usr_email}</td>
                         <td>${user.usr_email_optout}</td>
                         <td>${user.usr_join_date}</td>
+                        <td><a href="${contextPath}/admin/removeUser?id=${user.usr_id}"
+                               onclick="return confirmDelete();">삭제하기</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -94,9 +97,9 @@
                     <td><b>번호</b></td>
                     <td><b>제목</b></td>
                     <td><b>닉네임</b></td>
-                    <td><b>게시물 관리</b></td>
                     <td><b>신고 내역</b></td>
-                    <td><b>작성날짜</b></td>
+                    <td><b>작성 날짜</b></td>
+                    <td><b>삭제</b></td>
                 </tr>
 
                 <c:forEach var="community" items="${communityList}">
@@ -104,9 +107,10 @@
                         <td>${community.com_post_number}</td>
                         <td>${community.com_title}</td>
                         <td>${community.usr_nickname}</td>
-                        <td>${community.com_post_number}</td>
-                        <td>${community.com_report_count}</td>
+                        <td>${community.com_report_count}건</td>
                         <td>${community.com_post_date}</td>
+                        <td><a href="${contextPath}/admin/removeCommunity?number=${community.com_post_number}"
+                               onclick="return confirmDelete();">삭제하기</a></td>
                     </tr>
                 </c:forEach>
             </table>

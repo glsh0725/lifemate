@@ -33,7 +33,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List listCommunity() throws Exception{
+    public List listCommunity() throws Exception {
         List communityList = null;
         communityList = adminDAO.selectAllCommunityList();
         return communityList;
@@ -47,5 +47,17 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<CommunityVO> selectCommunityList(CommunityVO communityVO) {
         return sqlSession.selectList("adminMapper.selectCommunityList", communityVO);
+    }
+
+    /* 회원 삭제 기능 */
+    @Override
+    public int removeUser(String id) throws Exception {
+        return adminDAO.deleteUser(id);
+    }
+
+    /* 커뮤니티 글 삭제 기능 */
+    @Override
+    public int removeCommunity(String number) throws Exception {
+        return adminDAO.deleteCommunity(number);
     }
 }
