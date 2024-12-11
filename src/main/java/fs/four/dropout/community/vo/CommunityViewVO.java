@@ -8,7 +8,7 @@ import java.util.Date;
 @Component("communityViewVO")
 public class CommunityViewVO {
 
-    private Number com_post_number;
+    private int com_post_number;
     private String usr_id;
     private String com_title;
     private String com_thumbnail_name;
@@ -34,11 +34,11 @@ public class CommunityViewVO {
     public CommunityViewVO() {}
 
 
-    public Number getCom_post_number() {
+    public int getCom_post_number() {
         return com_post_number;
     }
 
-    public void setCom_post_number(Number com_post_number) {
+    public void setCom_post_number(int com_post_number) {
         this.com_post_number = com_post_number;
     }
 

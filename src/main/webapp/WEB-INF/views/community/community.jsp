@@ -26,7 +26,7 @@
             <div class="board-card">
                 <a href="${pageContext.request.contextPath}/community/communityview?id=${post.com_post_number}" class="post-link">
             <div class="image-placeholder">이미지</div>
-            <div class="tag">${post.com_post_number}</div>
+            <div class="tag">${post.com_duration}</div>
             <div class="content">
                 <h3 class="title">${post.com_title}</h3>
                 <p class="location">${post.com_location}</p>
