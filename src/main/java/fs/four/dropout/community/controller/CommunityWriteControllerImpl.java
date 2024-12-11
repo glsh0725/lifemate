@@ -48,6 +48,7 @@ public class CommunityWriteControllerImpl implements CommunityWriteController {
         }
 
         communityWrite.setUsr_id(userVO.getUsr_id());
+        String comDuration = communityWrite.getCom_duration();
 
         int result = 0;
 
