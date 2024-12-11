@@ -49,9 +49,9 @@
 
                 <div class="form-group-emailOptOut">
                     <label>이메일 수신 여부</label>
-                    <input type="radio" id="emailAgree" name="emailOptOut" value="Y" checked>
+                    <input type="radio" id="emailAgree" name="usr_email_optout" value="Y" checked>
                     <label for="emailAgree">동의</label>
-                    <input type="radio" id="emailDisagree" name="emailOptOut" value="N">
+                    <input type="radio" id="emailDisagree" name="usr_email_optout" value="N">
                     <label for="emailDisagree">거부</label>
                 </div>
 

@@ -12,6 +12,10 @@ public interface AdminService {
 
     public List listCommunity() throws Exception;
 
+    public int removeUser(String id) throws Exception;
+
+    public int removeCommunity(String number) throws Exception;
+
     List<UserVO> selectUserList(UserVO userVO);
     List<CommunityVO> selectCommunityList(CommunityVO communityVO);
 }
