@@ -96,7 +96,7 @@
                 <tr align="center">
                     <td><b>번호</b></td>
                     <td><b>제목</b></td>
-                    <td><b>닉네임</b></td>
+                    <td><b>아이디</b></td>
                     <td><b>신고 내역</b></td>
                     <td><b>작성 날짜</b></td>
                     <td><b>삭제</b></td>
@@ -106,7 +106,7 @@
                     <tr align="center">
                         <td>${community.com_post_number}</td>
                         <td>${community.com_title}</td>
-                        <td>${community.usr_nickname}</td>
+                        <td>${community.usr_id}</td>
                         <td>${community.com_report_count}건</td>
                         <td>${community.com_post_date}</td>
                         <td><a href="${contextPath}/admin/removeCommunity?number=${community.com_post_number}"

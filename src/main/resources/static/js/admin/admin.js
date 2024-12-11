@@ -21,6 +21,31 @@ function confirmDelete() {
     return confirm("정말로 삭제하시겠습니까?");
 }
 
+$(document).on("click", ".delete-link", function (e) {
+    e.preventDefault();
+
+    const deleteType = $(this).data("id") ? "user" : "community";
+    const identifier = deleteType === "user" ? $(this).data("id") : $(this).data("number");
+    const url = deleteType === "user" ? "/admin/removeUser" : "/admin/removeCommunity";
+
+    if (confirmDelete()) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: deleteType === "user" ? {id: identifier} : {number: identifier},
+            success: function () {
+                deleteType === "user" ? getSearchList() : getSearchList2();
+            },
+            error: function () {
+                alert("삭제에 실패했습니다.");
+            },
+            complete: function () {
+                $(this).prop("disabled", false).text("삭제하기");
+            }
+        });
+    }
+});
+
 // 검색 리스트
 function getSearchList() {
 
@@ -104,32 +129,6 @@ function getSearchList() {
         }
     });
 
-    $(document).on("click", ".delete-link", function (e) {
-        e.preventDefault();
-
-        const userId = $(this).data("id");
-
-        if (confirm("정말로 삭제하시겠습니까?")) {
-
-            $(this).prop("disabled", true).text("삭제하기");
-
-            $.ajax({
-                type: "GET",
-                url: "/admin/removeUser",
-                data: {id: userId},
-                success: function (response) {
-                    getSearchList();
-                },
-                error: function (xhr, status, error) {
-                    alert("삭제에 실패했습니다.");
-                },
-                complete: function () {
-                    $(this).prop("disabled", false).text("삭제하기");
-                }
-            });
-        }
-    });
-
 }
 
 
@@ -157,7 +156,7 @@ function getSearchList2() {
             if (data.length === 0) {
                 let message = searchType === "title"
                     ? "해당 게시글이 존재하지 않습니다."
-                    : "해당 닉네임이 존재하지 않습니다.";
+                    : "해당 아이디가 존재하지 않습니다.";
 
                 $("#communitytable").empty();
                 let noDataMessage = `
@@ -177,7 +176,7 @@ function getSearchList2() {
             <tr align="center">
                         <td><b>번호</b></td>
                         <td><b>제목</b></td>
-                        <td><b>닉네임</b></td>
+                        <td><b>아이디</b></td>
                         <td><b>신고 내역</b></td>
                         <td><b>작성 날짜</b></td>
                         <td><b>삭제</b></td>
@@ -194,7 +193,7 @@ function getSearchList2() {
                 <tr align="center">
                             <td>${community.com_post_number || "N/A"}</td>
                             <td>${community.com_title || "N/A"}</td>
-                            <td>${community.usr_nickname || "N/A"}</td>
+                            <td>${community.usr_id || "N/A"}</td>
                             <td>${community.com_report_count || 0}건</td>
                             <td>${community.com_post_date || "N/A"}</td>
                             <td>
@@ -212,32 +211,6 @@ function getSearchList2() {
             alert("community: " + xhr.status + "\n"
                 + "message " + xhr.responseText + "\n"
                 + "error: " + error);
-        }
-    });
-
-    $(document).on("click", ".delete-link", function (e) {
-        e.preventDefault();
-
-        const postNumber = $(this).data("number");
-
-        if (confirm("정말로 삭제하시겠습니까?")) {
-
-            $(this).prop("disabled", true).text("삭제하기");
-
-            $.ajax({
-                type: "GET",
-                url: "/admin/removeCommunity",
-                data: {number: postNumber},
-                success: function (response) {
-                    getSearchList2();
-                },
-                error: function (xhr, status, error) {
-                    alert("삭제에 실패했습니다.");
-                },
-                complete: function () {
-                    $(this).prop("disabled", false).text("삭제하기");
-                }
-            });
         }
     });
 

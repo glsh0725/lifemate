@@ -20,7 +20,7 @@
         <![CDATA[
         select com_post_number,
                COALESCE(com_title, 'N/A')           AS com_title,
-               COALESCE(usr_nickname, 'N/A')        AS usr_nickname,
+               COALESCE(usr_id, 'N/A')        AS usr_id,
                COALESCE(com_report_count, 0)        AS com_report_count,
                TO_CHAR(com_post_date, 'YYYY-MM-DD') AS com_post_date
         from lm_community

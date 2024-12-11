@@ -12,17 +12,9 @@
 
     <insert id="insertCommunityWrite" parameterType="communityWriteVO" useGeneratedKeys="true" keyProperty="com_post_number">
         <![CDATA[
-        insert into lm_community(com_post_number, com_title, com_location, com_content, com_duration)
-        values (post_seq.nextval, #{com_title}, #{com_location}, #{com_content}, #{com_duration, jdbcType=VARCHAR})
+        insert into lm_community(com_post_number, com_title, usr_id, com_location, com_content, com_duration)
+        values (post_seq.nextval, #{com_title}, #{usr_id, jdbcType=VARCHAR}, #{com_location}, #{com_content}, #{com_duration, jdbcType=VARCHAR})
         ]]>
     </insert>
-
-<!--    <select id="selectAllPostList" resultType="CommunityVO">-->
-<!--        <![CDATA[-->
-<!--        select *-->
-<!--        from lm_community-->
-<!--        order by com_post_number desc-->
-<!--        ]]>-->
-<!--    </select>-->
 
 </mapper>
