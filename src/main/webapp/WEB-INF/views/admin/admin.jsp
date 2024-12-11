@@ -73,6 +73,15 @@
 
         </table>
 
+        <div class="pagination">
+            <c:forEach begin="0" end="${totalPages - 1}" var="pageIndex">
+                <a href="${contextPath}/admin?page=${pageIndex}&size=10"
+                   class="${pageIndex == currentPage ? 'active' : ''}">
+                        ${pageIndex + 1}
+                </a>
+            </c:forEach>
+        </div>
+
 
     </div>
 

@@ -32,16 +32,24 @@ public class AdminControllerImpl implements AdminController {
 
     @Override
     @GetMapping("/admin")
-    public ModelAndView listUsers(HttpServletRequest request,
-                                  HttpServletResponse response) throws Exception {
+    public ModelAndView listUsersPaging(HttpServletRequest request,
+                                  HttpServletResponse response,
+                                        @RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "10") int size) throws Exception {
+        List<UserVO> userListPage = adminService.listUsersPaging(page, size);
 
-        List usersList = adminService.listUsers();
+        int totalUsers = adminService.getTotalUser();
+
+//        List usersList = adminService.listUsers();
         List communityList = adminService.listCommunity();
 
         ModelAndView mav = new ModelAndView("/admin/admin");
 
-        mav.addObject("usersList", usersList);
+        mav.addObject("usersList", userListPage);
         mav.addObject("communityList", communityList);
+
+        mav.addObject("totalPages", (int) Math.ceil((double) totalUsers / size));
+        mav.addObject("currentPage", page);
         return mav;
     }
 

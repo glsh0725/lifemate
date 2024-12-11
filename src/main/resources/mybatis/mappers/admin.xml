@@ -44,4 +44,18 @@
         ]]>
     </delete>
 
+    <select id="listUsersPaging" resultType="UserVO">
+        <![CDATA[
+        select usr_id, usr_password, usr_nickname, usr_email, usr_email_optout, usr_join_date
+        from lm_user
+        order by usr_id
+        offset #{offset} rows fetch next #{pageSize} rows only
+        ]]>
+    </select>
+
+    <select id="getTotalUser" resultType="int">
+        select count(*)
+        from lm_user
+    </select>
+
 </mapper>

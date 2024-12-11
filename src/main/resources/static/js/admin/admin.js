@@ -89,6 +89,7 @@ function getSearchList() {
 
             let tablelist = `
             <table>
+            <thead>
                 <tr align="center">
                     <td><b>아이디</b></td>
                     <td><b>비밀번호</b></td>
@@ -98,6 +99,8 @@ function getSearchList() {
                     <td><b>가입일</b></td>
                     <td><b>삭제</b></td>
                 </tr>
+                </thead>
+                <tbody>
             `;
 
             // 데이터 추가

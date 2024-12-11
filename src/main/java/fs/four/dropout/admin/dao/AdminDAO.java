@@ -1,6 +1,8 @@
 package fs.four.dropout.admin.dao;
 
+import fs.four.dropout.user.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
 
 import javax.xml.crypto.Data;
@@ -16,5 +18,9 @@ public interface AdminDAO {
     public int deleteUser(String id) throws DataAccessException;
 
     public int deleteCommunity(String number) throws DataAccessException;
+
+    List<UserVO> listUsersPaging(@Param("offset") int offset, @Param("pageSize") int pageSize);
+
+    int getTotalUser();
 
 }

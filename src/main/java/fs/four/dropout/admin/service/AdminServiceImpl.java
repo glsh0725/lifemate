@@ -60,4 +60,15 @@ public class AdminServiceImpl implements AdminService {
     public int removeCommunity(String number) throws Exception {
         return adminDAO.deleteCommunity(number);
     }
+
+    @Override
+    public List<UserVO> listUsersPaging(int page, int size) {
+        int offset = page * size;
+        return adminDAO.listUsersPaging(offset, size);
+    }
+
+    @Override
+    public int getTotalUser() {
+        return adminDAO.getTotalUser();
+    }
 }

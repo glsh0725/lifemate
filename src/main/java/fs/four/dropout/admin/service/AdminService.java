@@ -18,4 +18,8 @@ public interface AdminService {
 
     List<UserVO> selectUserList(UserVO userVO);
     List<CommunityVO> selectCommunityList(CommunityVO communityVO);
+
+    public List<UserVO> listUsersPaging(int page, int size);
+
+    public int getTotalUser();
 }
