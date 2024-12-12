@@ -2,45 +2,47 @@ package fs.four.dropout.mate.controller;
 
 import fs.four.dropout.mate.service.MateService;
 import fs.four.dropout.mate.vo.MateVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 @Controller
 public class MateControllerImpl implements MateController {
 
-    private final MateService mateService;
+    @Autowired
+    private MateService mateService;
 
-    public MateControllerImpl(MateService mateService) {
-        this.mateService = mateService;
-    }
-
-    @GetMapping("/mateform")
-    public String mateformPage(Model model) {
-
-        List<MateVO> mateList;
-
-        /*int totalMate = mateList.size();
-        int totalPages = (int) Math.ceil((double) totalMate / pageSize);
-
-        int startIndex = (page - 1) * pageSize;
-        int end Index = Math.min(startIndex + pageSize, mateList.size());
-        List<MateVO> mateListForPage = mateList.subList(startIndex, endIndex);
-
-        model.addAttribute("mateList", mateListForPage);*/
-
-        return "mate/mateform";
-    }
-
+    // Mate 데이터를 조회하여 JSP로 전달
     @GetMapping("/mate")
-    public String matePage() {
+    public String mainPage(Model model) {
+        List<MateVO> mateList = mateService.getAllMates();
+        model.addAttribute("mateList", mateList);
         return "mate/mate";
     }
 
-    @GetMapping("/mateform/list")
-    public String matelist() {
-        return "mate/mateform";
+    // 유아 동반 데이터 API
+    @GetMapping("/api/mate/infants")
+    @ResponseBody
+    public List<MateVO> getInfantData() {
+        return mateService.getInfantData();
     }
+
+    // 반려동물 동반 데이터 API
+    @GetMapping("/api/mate/pets")
+    @ResponseBody
+    public List<MateVO> getPetData() {
+        return mateService.getPetData();
+    }
+
+    // 통합 데이터 API
+    @GetMapping("/api/mate/combined")
+    @ResponseBody
+    public List<MateVO> getCombinedData() {
+        return mateService.getCombinedData();
+    }
+
 }
