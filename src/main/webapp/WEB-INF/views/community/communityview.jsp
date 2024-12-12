@@ -27,8 +27,8 @@
                         <td>${post.com_title}</td>
                     </tr>
                     <tr>
-                        <th>아이디</th>
-                        <td>${post.usr_id}</td>
+                        <th>닉네임</th>
+                        <td>${post.usr_nickname}</td>
                         <th>작성날짜</th>
                         <td>${post.com_post_date}</td>
                         <th>조회수</th>

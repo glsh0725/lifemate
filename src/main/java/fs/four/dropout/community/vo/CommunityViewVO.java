@@ -10,6 +10,7 @@ public class CommunityViewVO {
 
     private int com_post_number;
     private String usr_id;
+    private String usr_nickname;
     private String com_title;
     private String com_thumbnail_name;
     private String com_thumbnail_path;
@@ -193,5 +194,13 @@ public class CommunityViewVO {
 
     public void setCom_comments_count(int com_comments_count) {
         this.com_comments_count = com_comments_count;
+    }
+
+    public String getUsr_nickname() {
+        return usr_nickname;
+    }
+
+    public void setUsr_nickname(String usr_nickname) {
+        this.usr_nickname = usr_nickname;
     }
 }
