@@ -21,7 +21,7 @@ public class CommunityViewVO {
     private String com_video_name;
     private String com_video_path;
     private String com_content;
-    private int com_comments_count;
+    private int com_comment_count;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date com_post_date;
@@ -188,12 +188,12 @@ public class CommunityViewVO {
         this.com_updated_date = com_updated_date;
     }
 
-    public int getCom_comments_count() {
-        return com_comments_count;
+    public int getCom_comment_count() {
+        return com_comment_count;
     }
 
-    public void setCom_comments_count(int com_comments_count) {
-        this.com_comments_count = com_comments_count;
+    public void setCom_comment_count(int com_comment_count) {
+        this.com_comment_count = com_comment_count;
     }
 
     public String getUsr_nickname() {
