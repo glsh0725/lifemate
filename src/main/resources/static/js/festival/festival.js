@@ -25,7 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalReferenceDate = document.getElementById("modal-referenceDate");
 
     prevMonthButton.textContent = "이전 달";
+    prevMonthButton.className = "prev-month-btn";
+
     nextMonthButton.textContent = "다음 달";
+    nextMonthButton.className = "next-month-btn";
 
     const calendarControls = document.querySelector(".calendar-controls");
     calendarControls.appendChild(prevMonthButton);
@@ -34,8 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function populateYearAndMonth(selectedDate) {
         const currentYear = new Date(selectedDate).getFullYear();
         const currentMonth = new Date(selectedDate).getMonth();
+        const presentYear = new Date().getFullYear();
 
-        for (let i = currentYear - 5; i <= currentYear + 5; i++) {
+        for (let i = presentYear - 2; i <= presentYear + 1; i++) {
             const option = document.createElement("option");
             option.value = i;
             option.textContent = i;
@@ -180,20 +184,23 @@ document.addEventListener("DOMContentLoaded", function () {
             const festival = window.festivalData[index];
 
             modalTitle.textContent = festival.fstvlNm;
-            modalOpar.textContent = festival.opar || "N/A";
+            modalOpar.textContent = festival.opar || "정보없음";
             modalStartDate.textContent = festival.fstvlStartDate;
             modalEndDate.textContent = festival.fstvlEndDate;
-            modalDescription.textContent = festival.fstvlCo || "N/A";
-            modalMnnstNm.textContent = festival.mnnstNm || "N/A";
-            modalAuspcInsttNm.textContent = festival.auspcInsttNm || "N/A";
-            modalSuprtInsttNm.textContent = festival.suprtInsttNm || "N/A";
-            modalPhoneNumber.textContent = festival.phoneNumber || "N/A";
-            modalHomepage.textContent = festival.homepageUrl || "N/A";
-            modalHomepage.href = festival.homepageUrl || "#";
-            modalRelateInfo.textContent = festival.relateInfo || "N/A";
-            modalRdnmadr.textContent = festival.rdnmadr || "N/A";
-            modalLnmadr.textContent = festival.lnmadr || "N/A";
-            modalReferenceDate.textContent = festival.referenceDate || "N/A";
+            modalDescription.textContent = festival.fstvlCo || "정보없음";
+            modalMnnstNm.textContent = festival.mnnstNm || "정보없음";
+            modalAuspcInsttNm.textContent = festival.auspcInsttNm || "정보없음";
+            modalSuprtInsttNm.textContent = festival.suprtInsttNm || "정보없음";
+            modalPhoneNumber.textContent = festival.phoneNumber || "정보없음";
+            if (festival.homepageUrl && festival.homepageUrl !== "정보없음") {
+                modalHomepage.innerHTML = `<a href="${festival.homepageUrl}" target="_blank">${festival.homepageUrl}</a>`;
+            } else {
+                modalHomepage.textContent = "정보없음";
+            }
+            modalRelateInfo.textContent = festival.relateInfo || "정보없음";
+            modalRdnmadr.textContent = festival.rdnmadr || "정보없음";
+            modalLnmadr.textContent = festival.lnmadr || "정보없음";
+            modalReferenceDate.textContent = festival.referenceDate || "정보없음";
 
             modal.style.display = "block";
         });
