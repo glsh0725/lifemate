@@ -50,7 +50,7 @@
 
             <div class="form-group">
                 <label for="image">대표 이미지</label>
-                <input type="file" id="image" name="file" accept="image/*">
+                <input type="file" id="image" name="file" accept=".jpg, .jpeg, .png">
             </div>
 
             <div class="form-group">
