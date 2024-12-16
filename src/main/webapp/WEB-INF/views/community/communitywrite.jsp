@@ -50,7 +50,7 @@
 
             <div class="form-group">
                 <label for="image">이미지 첨부</label>
-                <input type="file" id="image" name="image" accept="image/*">
+                <input type="file" id="image" name="file" accept="image/*">
             </div>
 
             <div class="form-group">
