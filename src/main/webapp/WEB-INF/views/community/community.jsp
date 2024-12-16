@@ -25,7 +25,7 @@
         <c:forEach var="post" items="${postsList}">
             <div class="board-card">
                 <a href="${pageContext.request.contextPath}/community/communityview?id=${post.com_post_number}" class="post-link">
-            <div class="image-placeholder">이미지</div>
+            <div class="image-placeholder"><img src="<c:url value='${post.com_thumbnail_path}' />" alt="커뮤니티 이미지"></div>
             <div class="tag">${post.com_duration}</div>
             <div class="content">
                 <h3 class="title">${post.com_title}</h3>
