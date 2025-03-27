@@ -51,7 +51,6 @@ __[사용기술 및 개발환경]__
 - Back-end  :  JDK17, OracleDB 18C, Spring Boot, MyBatis
 - Library  :  Lombok 1.18.30, MyBatis 3.0.4, JSTL, Jakarta Servlet, Jakarta JSP, Apache Tomcat 10.1.19, ojdbc8 19.8.0.0, Caffeine Cache 3.1.8
 <br/>
-<br/>
 
 * * *
  
